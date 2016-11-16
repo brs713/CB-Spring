@@ -1,13 +1,10 @@
 package com.bradlav.models;
 
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -20,12 +17,11 @@ public class User extends AbstractEntity {
 	private String username;
 	private String pwHash;
 	private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-
 	private Profile userProfile;
 	// Do I need a 'private List<Climbs> usersClimbs;' here?
+
 	
-	public User() {}
-	
+	// CONSTRUCTORS //
 	public User(String username, String password) {
 		
 		super();
@@ -39,6 +35,11 @@ public class User extends AbstractEntity {
 		
 	}
 	
+	// No-Arg Constructor
+	public User() {}
+	
+	
+	// GETTERS & SETTERS //
 	@NotNull
     @Column(name = "pwhash")
 	public String getPwHash() {

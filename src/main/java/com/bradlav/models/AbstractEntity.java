@@ -9,18 +9,18 @@ import javax.validation.constraints.NotNull;
 @MappedSuperclass
 public abstract class AbstractEntity {
 
-	private int uid;
+	private int id;
 	
 	@Id
     @GeneratedValue
     @NotNull
-    @Column(name = "uid", unique = true)
-	public int getUid() {
-		return this.uid;
+    @Column(name = "id", unique = true)
+	public int getId() {
+		return this.id;
 	}
 	
-	protected void setUid(int uid) {
-        this.uid = uid;
+	protected void setId(int id) {
+        this.id = id;
     }
 	
 }

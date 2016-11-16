@@ -1,6 +1,7 @@
 package com.bradlav.models;
 
 
+import java.awt.Color;
 import java.util.Date;
 
 import javax.persistence.Column;
