@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="template :: htmlhead">
+
+</head>
+
+<body>
+
+	<form method="post">
+		
+		<h1>Log In</h1>
+		
+		<div class="form-group"  th:class="${usrError}? 'has-error'">
+			<label for="name" class="control-label">Username:
+				<br />
+				<input type="text" name="username" th:value="${name}" class="form-control" /></label>&nbsp;&nbsp;<span class="text-danger error" th:text="${usrError}"></span>
+		</div>
+			<p class="text-warning info" th:text="${usrGuide}"></p>
+			<br />
+
+		<div class="form-group"  th:class="${pwdError}? 'has-error'">
+			<label for="name" class="control-label">Password:
+				<br />
+				<input type="password" name="password" class="form-control" /></label>&nbsp;&nbsp;<span class="text-danger error" th:text="${pwdError}"></span>
+		</div>
+			<p class="text-warning info" th:text="${pwdGuide}"></p>
+
+		<button class="btn btn-primary" type="submit">Log In</button>
+		
+		<p>Don't have an account?  <a href="signup.html" th:href="@{/signup}">Get One</a>!</p>
+		
+
+	</form>
+
+</body>
+</html>

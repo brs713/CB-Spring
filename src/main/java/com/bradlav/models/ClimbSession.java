@@ -1,11 +1,11 @@
 package com.bradlav.models;
 
 
-import java.awt.Color;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -38,7 +38,8 @@ public class ClimbSession extends AbstractEntity {
 	
 	// GETTERS & SETTERS
 	@NotNull
-	@Column(name = "userInitiate")
+	@ManyToOne
+	//@Column(name = "userInitiate")
 	public User getUserInitiate() {
 		return userInitiate;
 	}
@@ -46,7 +47,8 @@ public class ClimbSession extends AbstractEntity {
 		this.userInitiate = userInitiate;
 	}
 	
-	@Column(name = "userAcceptor")
+	@ManyToOne
+	//@Column(name = "userAcceptor")
 	public User getUserAcceptor() {
 		return userAcceptor;
 	}

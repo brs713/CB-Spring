@@ -17,7 +17,7 @@ public class User extends AbstractEntity {
 	private String username;
 	private String pwHash;
 	private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-	private Profile userProfile;
+//	private Profile userProfile;
 	// Do I need a 'private List<Climbs> usersClimbs;' here?
 
 	
@@ -63,13 +63,13 @@ public class User extends AbstractEntity {
 	}
 	
 	// this isn't a column
-	public Profile getUserProfile() {
-		return userProfile;
-	}
-
-	public void setUserProfile(Profile userProfile) {
-		this.userProfile = userProfile;
-	}
+//	public Profile getUserProfile() {
+//		return userProfile;
+//	}
+//
+//	public void setUserProfile(Profile userProfile) {
+//		this.userProfile = userProfile;
+//	}
 
 	// UTILITY METHODS
 	private static String hashPassword(String password) {		
@@ -81,13 +81,13 @@ public class User extends AbstractEntity {
 	}
 	
 	public static boolean isValidPassword(String password) {
-		Pattern validUsernamePattern = Pattern.compile("(\\S){6,20}");
+		Pattern validUsernamePattern = Pattern.compile("(\\S){4,20}");
 		Matcher matcher = validUsernamePattern.matcher(password);
 		return matcher.matches();
 	}
 	
 	public static boolean isValidUsername(String username) {
-		Pattern validUsernamePattern = Pattern.compile("[a-zA-Z][a-zA-Z0-9_-]{4,11}");
+		Pattern validUsernamePattern = Pattern.compile("[a-zA-Z][a-zA-Z0-9_-]{3,20}");
 		Matcher matcher = validUsernamePattern.matcher(username);
 		return matcher.matches();
 	}

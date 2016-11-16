@@ -12,10 +12,22 @@ import com.bradlav.models.User;
 @Controller
 public class AuthenticationController extends AbstractController {
 
-	static class AuthenticationError {
-		private String[] userError = {"Invalid Username.", "Username already exists.", "Could not find a user by that username."};
-		private String[] passwordError = {"Please enter a valid password", "Incorrect password."};
+	private static class AuthenticationError {
+		private String[] userError = {
+				"Invalid Username.",
+				"Username already exists.",
+				"Could not find a user by that username.",
+				"usernames must be between 4 & 20 characters",
+				"only letters, numbers, '_' and '-' ",
+				"may be used in username creation"
+		};
+		private String[] passwordError = {
+				"Please enter a valid password.",
+				"Incorrect password.",
+				"must be 4-16 characters"
+		};
 		private String confirmError = "Passwords do not match.";
+		private String emailError = "Please enter an e-mail address.";
 	}
 
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
@@ -30,27 +42,39 @@ public class AuthenticationController extends AbstractController {
 
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		String verify = request.getParameter("verify");
+		String verify = request.getParameter("confPassword");
+		String email = request.getParameter("email");
 
+		model.addAttribute("email", email);
 
 		//Validate data.
 		boolean hasError = false;
 		if (!User.isValidUsername(username)) {
 			hasError = true;
-			model.addAttribute("username_error", error.userError[0]);
+			model.addAttribute("usrError", error.userError[0]);
+			if (username.length() < 4 || username.length() > 20) {
+				model.addAttribute("usrGuideLength", error.userError[3]);
+			}
+			else {
+				model.addAttribute("usrGuideAllowed", error.userError[4] + error.userError[5]);
+			}
+
 		}
 		else { // username is valid
+			
 
 			// if this username already exists
 			if (userDao.findByUsername(username) != null) {
-				model.addAttribute("username_error", error.userError[1]);
+				model.addAttribute("usrError", error.userError[1]);
 				hasError = true;
 			}
-			
+
 			else { // username doesn't already exist
-				
+				model.addAttribute("name", username);
+
 				if (!User.isValidPassword(password)) {
-					model.addAttribute("password_error", error.passwordError[0]);
+					model.addAttribute("pwdError", error.passwordError[0]);
+					model.addAttribute("pwdGuide", error.passwordError[2]);
 					hasError = true;
 				}
 				model.addAttribute("username", username);
@@ -58,12 +82,14 @@ public class AuthenticationController extends AbstractController {
 			}
 		}
 		if (!verify.equals(password)) {
-			model.addAttribute("verify_error", error.confirmError);
+			model.addAttribute("cnfError", error.confirmError);
+			model.addAttribute("emlError", error.emailError);
 			hasError = true;
 		}
 
 
 		if (hasError) {
+			model.addAttribute("errClass", "error");
 			return "signup";
 		}
 
@@ -72,7 +98,7 @@ public class AuthenticationController extends AbstractController {
 		userDao.save(user);
 		login(request, user);
 
-		return "redirect:loc";
+		return "redirect:profile";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -92,13 +118,16 @@ public class AuthenticationController extends AbstractController {
 
 		boolean hasError = false;
 		if (user == null) {
-			model.addAttribute("error", error.userError[2]);
+			model.addAttribute("usrError", error.userError[2]);
+			model.addAttribute("usrGuide", error.userError[3] + " and contain " + error.userError[4]);
 			hasError = true;
 		}
 		else {
-			model.addAttribute("username", user.getUsername());
+//			model.addAttribute("username", user.getUsername());		***What's this?  Just a mistake or was this purposeful?***
+			model.addAttribute("name", username);
 			if (!user.isMatchingPassword(password)) {
-				model.addAttribute("error", error.passwordError[1]);
+				model.addAttribute("pwdError", error.passwordError[1]);
+				model.addAttribute("pwdGuide", error.passwordError[2]);
 				hasError = true;
 			}
 		}

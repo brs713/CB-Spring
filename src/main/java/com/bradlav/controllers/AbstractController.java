@@ -4,10 +4,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.bradlav.models.Communication;
-import com.bradlav.models.Profile;
 import com.bradlav.models.User;
 import com.bradlav.models.dao.ClimbDao;
+import com.bradlav.models.dao.CommunicationDao;
+import com.bradlav.models.dao.ProfileDao;
 import com.bradlav.models.dao.UserDao;
 
 
@@ -21,10 +21,10 @@ public abstract class AbstractController {
 	protected ClimbDao climbDao;
 	
 	@Autowired
-	protected Communication commDao;
+	protected CommunicationDao commDao;
 
 	@Autowired
-	protected Profile profileDao;
+	protected ProfileDao profileDao;
 
 	
     public static final String userSessionKey = "user_id";

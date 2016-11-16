@@ -14,15 +14,18 @@ public interface UserDao extends CrudRepository<User, Integer> {
 	List<User> findAll();
 	
 	User findById(int id);
-	User findById(User user);
+//	User findById(User user);
 
-	List<User> findbyId(List<User> users);
-	List<User> findbyId(int[] userIds);
+//	List<User> findbyId(List<User> users);
+//	List<User> findbyId(int[] userIds);
 	
     User findByUsername(String username);
     User findByUsername(User user);
     
-	List<User> findbyUsername(List<User> usernames);
-	List<User> findbyUsername(String[] users);
+//	List<User> findbyUsername(List<User> usernames);
+//	List<User> findbyUsername(String[] users);
     
 }
+
+// from: https://dzone.com/articles/persistence-layer-spring-data
+//   "you can provide the actual JPQ query by using the @Query annotation"

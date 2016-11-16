@@ -4,6 +4,10 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -13,6 +17,8 @@ import javax.validation.constraints.NotNull;
 @Table(name = "communication")
 public class Communication extends AbstractEntity {
 	
+//	private final int messageId;
+//	private static int serialNumber;
 	private User fromUser;
 	private User toUser;
 	private ClimbSession climb;
@@ -22,6 +28,8 @@ public class Communication extends AbstractEntity {
 	
 	public Communication(User fromUser, User toUser, ClimbSession climb, Date messageCreated) {
 		super();
+//		incrementSerialNumber();
+//		this.messageId = serialNumber;
 		this.fromUser = fromUser;
 		this.toUser = toUser;
 		this.climb = climb;
@@ -34,8 +42,19 @@ public class Communication extends AbstractEntity {
 
 	
 	// GETTERS & SETTERS
+
+//	@Id
+//	@NotNull
+//	@GeneratedValue
+//	@Column(name = "messageId", unique = true)
+//	public int getMessageId() {
+//		return messageId;
+//	}
+	
+	
 	@NotNull
-	@Column(name = "fromUser")
+	@ManyToOne
+	//@Column(name = "fromUser")
 	public User getFromUser() {
 		return fromUser;
 	}
@@ -46,7 +65,8 @@ public class Communication extends AbstractEntity {
 	}
 
 	@NotNull
-	@Column(name = "toUser")
+	@ManyToOne
+	//@Column(name = "toUser")
 	public User getToUser() {
 		return toUser;
 	}
@@ -56,7 +76,8 @@ public class Communication extends AbstractEntity {
 		this.toUser = toUser;
 	}
 
-
+	@NotNull
+	@ManyToOne
 	public ClimbSession getClimb() {
 		return climb;
 	}
@@ -66,6 +87,7 @@ public class Communication extends AbstractEntity {
 	}
 
 	@NotNull
+	@OrderColumn
 	@Column(name = "messageCreated")
 	public Date getMessageCreated() {
 		return messageCreated;
@@ -76,6 +98,10 @@ public class Communication extends AbstractEntity {
 		this.messageCreated = messageCreated;
 	}
 
+//	private static void incrementSerialNumber(){
+//		serialNumber ++;
+//	}
+	
 }
 
 

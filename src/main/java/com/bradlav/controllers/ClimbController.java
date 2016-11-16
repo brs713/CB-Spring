@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class ClimbController {
  
-	// LOC
+	// NEWCLIMB
 	@RequestMapping(value = "/newclimb", method = RequestMethod.GET)
     String newclimb(){
         return "newclimb";

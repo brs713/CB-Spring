@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="template :: htmlhead">
+
+</head>
+
+<body>
+
+	<form method="post">
+
+		<h1>Profile</h1>
+
+		<h4>Name</h4>
+		<label for="name"> <input name="name" type="text" /> <!-- th:value="${user.name}" -->
+		</label> <label for="pic"> <img height="200px" width="200px"
+			border="1px solid black" th:src="@{/img/cal2_2.png}" /> <!-- ${user.pic} -->
+		</label>
+
+		<h5>My Gyms:</h5>
+		<label for="gyms"> <input name="gyms" type="text" /> <!-- ***figure out how to make LaunchCode style selection boxes*** -->
+		</label>
+
+
+		<!-- Tabs - Sport/Boulder  ***do this with th:each?*** -->
+
+ 		<section th:replace="leadFragment :: leadTab"></section>
+		<section th:replace="trFragment :: trTab"></section>
+		<section th:replace="boulderFragment :: boulderTab"></section>
+		
+		<button type="submit">Save</button>
+
+	</form>
+
+
+</body>
+</html>

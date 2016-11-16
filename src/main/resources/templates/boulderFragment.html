@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<section th:fragment="boulderTab">
+
+	<p>
+		I usually practice: <span>
+			<div class="row">
+
+				<div class="row col-md-4">
+					<div class="dropdown col-md-6">
+						<span> min: </span>
+						<button class="btn btn-default dropdown-toggle" type="button"
+							id="boulderMin" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="true">
+							-Select-&nbsp;&nbsp;&nbsp;<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu climb-grades" aria-labelledby="boulderMin">
+							<li>VB</li>
+							<li>V0</li>
+							<li>V1</li>
+							<li>V2</li>
+							<li>V3</li>
+							<li>V4</li>
+							<li>V5</li>
+							<li>V6+</li>
+						</ul>
+					</div>
+					<div class="dropdown col-md-6">
+						<span>&nbsp;&nbsp;&nbsp;&nbsp;max: </span>
+						<button class="btn btn-default dropdown-toggle" type="button"
+							id="boulderMax" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="true">
+							-Select-&nbsp;&nbsp;&nbsp;<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu climb-grades" aria-labelledby="boulderMax">
+							<li>VB</li>
+							<li>V0</li>
+							<li>V1</li>
+							<li>V2</li>
+							<li>V3</li>
+							<li>V4</li>
+							<li>V5</li>
+							<li>V6</li>
+							<li>V7</li>
+							<li>V8+</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-md-4"></div>
+				<div class="col-md-4"></div>
+			</div> - max-<span>lvl-dropdown></span>
+		</span>
+	</p>
+
+		
+</section>
+
+</html>
