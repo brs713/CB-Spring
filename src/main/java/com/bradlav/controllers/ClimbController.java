@@ -4,7 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -17,6 +16,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class ClimbController {
  
+	// LOC
+	@RequestMapping(value = "/newclimb", method = RequestMethod.GET)
+    String newclimb(){
+        return "newclimb";
+    }
+	@RequestMapping(value = "/newclimb", method = RequestMethod.POST)
+	String newclimb(HttpServletRequest request, Model model) {
+        return "newclimb";
+    }
+	
+	
 	// LOC
 	@RequestMapping(value = "/loc", method = RequestMethod.GET)
     String locations(){

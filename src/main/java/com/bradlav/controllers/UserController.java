@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class UserController {
-
+	
+	
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
     String locations(){
         return "profile";

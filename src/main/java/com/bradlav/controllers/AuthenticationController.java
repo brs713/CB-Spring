@@ -47,8 +47,7 @@ public class AuthenticationController extends AbstractController {
 				hasError = true;
 			}
 			
-			// username doesn't already exist
-			else {
+			else { // username doesn't already exist
 				
 				if (!User.isValidPassword(password)) {
 					model.addAttribute("password_error", error.passwordError[0]);
@@ -73,7 +72,7 @@ public class AuthenticationController extends AbstractController {
 		userDao.save(user);
 		login(request, user);
 
-		return "redirect:blog/newpost";
+		return "redirect:loc";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -111,7 +110,7 @@ public class AuthenticationController extends AbstractController {
 
 		login(request, user);
 
-		return "redirect:blah/blah";		//*** TODO:  REDIRECT SOMEWHERE OTHER THAN BLAH/BLAH
+		return "redirect:loc";
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
