@@ -3,80 +3,65 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <section th:fragment="trTab">
-
-	<p>
-		I usually practice: <span>
+	<h3>TOP ROPE</h3>
+	<h4>I usually practice:</h4>
+	<div class="row">
+		<div class="col-md-4">
 			<div class="row">
-
-				<div class="row col-md-4">
-					<div class="dropdown col-md-6">
-						<span> min: </span>
-						<button class="btn btn-default dropdown-toggle" type="button"
-							id="trMin" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="true">
-							-Select-&nbsp;&nbsp;&nbsp;<span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu climb-grades" aria-labelledby="trMin">
-							<li>5.5</li>
-							<li>5.6</li>
-							<li>5.7</li>
-							<li>5.8</li>
-							<li>5.9</li>
-							<li>5.10a</li>
-							<li>5.10b</li>
-							<li>5.10c</li>
-							<li>5.10d</li>
-							<li>5.11a</li>
-							<li>5.11b</li>
-							<li>5.11c</li>
-							<li>5.11d</li>
-							<li>5.12a</li>
-							<li>5.12b</li>
-							<li>5.12c</li>
-							<li>5.12d</li>
-							<li>5.13a</li>
-							<li>5.13b</li>
-							<li>5.13c</li>
-							<li>5.13d</li>
-						</ul>
-					</div>
-					<div class="dropdown col-md-6">
-						<span>&nbsp;&nbsp;&nbsp;&nbsp;max: </span>
-						<button class="btn btn-default dropdown-toggle" type="button"
-							id="trMax" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="true">
-							-Select-&nbsp;&nbsp;&nbsp;<span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu climb-grades" aria-labelledby="trMax">
-							<li>5.5</li>
-							<li>5.6</li>
-							<li>5.7</li>
-							<li>5.8</li>
-							<li>5.9</li>
-							<li>5.10a</li>
-							<li>5.10b</li>
-							<li>5.10c</li>
-							<li>5.10d</li>
-							<li>5.11a</li>
-							<li>5.11b</li>
-							<li>5.11c</li>
-							<li>5.11d</li>
-							<li>5.12a</li>
-							<li>5.12b</li>
-							<li>5.12c</li>
-							<li>5.12d</li>
-							<li>5.13a</li>
-							<li>5.13b</li>
-							<li>5.13c</li>
-							<li>5.13d</li>
-						</ul>
-					</div>
+				<div class="col-md-6 form-group">
+					<label for="trMin">Min:</label> <select class="form-control"
+						name="trMin" id="trMin">
+						<option th:text="${trMin} ? ((${trMin} != -1) ? 'No Rating' : ' -Select- ' )"></option>
+						<option th:selected="(${trMin} == 1) ? 'selected'">5.5</option>
+						<option th:selected="(${trMin} == 2) ? 'selected'">5.6</option>
+						<option th:selected="(${trMin} == 3) ? 'selected'">5.7</option>
+						<option th:selected="(${trMin} == 4) ? 'selected'">5.8</option>
+						<option th:selected="(${trMin} == 5) ? 'selected'">5.9</option>
+						<option th:selected="(${trMin} == 6) ? 'selected'">5.10a</option>
+						<option th:selected="(${trMin} == 7) ? 'selected'">5.10b</option>
+						<option th:selected="(${trMin} == 8) ? 'selected'">5.10c</option>
+						<option th:selected="(${trMin} == 9) ? 'selected'">5.10d</option>
+						<option th:selected="(${trMin} == 10) ? 'selected'">5.11a</option>
+						<option th:selected="(${trMin} == 11) ? 'selected'">5.11b</option>
+						<option th:selected="(${trMin} == 12) ? 'selected'">5.11c</option>
+						<option th:selected="(${trMin} == 13) ? 'selected'">5.11d</option>
+						<option th:selected="(${trMin} == 14) ? 'selected'">5.12+</option>
+					</select>
 				</div>
-				<div class="col-md-4"></div>
-				<div class="col-md-4"></div>
-			</div> - max-<span>lvl-dropdown></span>
-		</span>
-	</p>
+				<div class="col-md-6 form-group">
+					<label for="trMax">Max:</label> <select class="form-control"
+						name="trMax" id="trMax">
+						<option th:text="${trMax} ? ((${trMax} != -1) ? 'No Rating' : ' -Select- ' )"></option>
+						<option th:selected="(${trMax} == 1) ? 'selected'">5.5</option>
+						<option th:selected="(${trMax} == 2) ? 'selected'">5.6</option>
+						<option th:selected="(${trMax} == 3) ? 'selected'">5.7</option>
+						<option th:selected="(${trMax} == 4) ? 'selected'">5.8</option>
+						<option th:selected="(${trMax} == 5) ? 'selected'">5.9</option>
+						<option th:selected="(${trMax} == 6) ? 'selected'">5.10a</option>
+						<option th:selected="(${trMax} == 7) ? 'selected'">5.10b</option>
+						<option th:selected="(${trMax} == 8) ? 'selected'">5.10c</option>
+						<option th:selected="(${trMax} == 9) ? 'selected'">5.10d</option>
+						<option th:selected="(${trMax} == 10) ? 'selected'">5.11a</option>
+						<option th:selected="(${trMax} == 11) ? 'selected'">5.11b</option>
+						<option th:selected="(${trMax} == 12) ? 'selected'">5.11c</option>
+						<option th:selected="(${trMax} == 13) ? 'selected'">5.11d</option>
+						<option th:selected="(${trMax} == 14) ? 'selected'">5.12a</option>
+						<option th:selected="(${trMax} == 15) ? 'selected'">5.12b</option>
+						<option th:selected="(${trMax} == 16) ? 'selected'">5.12c</option>
+						<option th:selected="(${trMax} == 17) ? 'selected'">5.12d</option>
+						<option th:selected="(${trMax} == 18) ? 'selected'">5.13a</option>
+						<option th:selected="(${trMax} == 19) ? 'selected'">5.13b</option>
+						<option th:selected="(${trMax} == 20) ? 'selected'">5.13c</option>
+						<option th:selected="(${trMax} == 21) ? 'selected'">5.13d</option>
+						<option th:selected="(${trMax} == 22) ? 'selected'">5.14+</option>
+					</select>
+				</div>
+
+			</div>
+		</div>
+		<div class="col-md-4"></div>
+		<div class="col-md-4"></div>
+	</div>
 		
 
 </section>

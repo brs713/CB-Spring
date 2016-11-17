@@ -19,16 +19,18 @@ public class ClimbSession extends AbstractEntity {
 	private User userAcceptor;
 	private String location;
 	private Date scheduledTime;
+	private Date endTime;
 	private boolean isAccepted;
 	
 
-	public ClimbSession(User userInitiate, User userAcceptor, String location, Date scheduledTime,
+	public ClimbSession(User userInitiate, User userAcceptor, String location, Date scheduledTime, Date endTime,
 			boolean isAccepted) {
 		super();
 		this.userInitiate = userInitiate;
 		this.userAcceptor = userAcceptor;
 		this.location = location;
 		this.scheduledTime = scheduledTime;
+		this.endTime = endTime;
 		this.isAccepted = false;
 	}
 	
@@ -66,7 +68,7 @@ public class ClimbSession extends AbstractEntity {
 	}
 	
 	@NotNull
-	@Column(name = "scheduledTime")
+	@Column(name = "scheduledTime")//, insertable = false, updatable = false)
 	public Date getScheduledTime() {
 		return scheduledTime;
 	}
@@ -74,6 +76,15 @@ public class ClimbSession extends AbstractEntity {
 		this.scheduledTime = scheduledTime;
 	}
 	
+	@Column(name = "endTime")
+	public Date getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(Date endTime) {
+		this.endTime = endTime;
+	}
+
 	@NotNull
 	@Column(name = "isAccepted")
 	public boolean isAccepted() {

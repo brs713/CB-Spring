@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="template :: htmlhead">
+
+</head>
+
+<body>
+
+
+	<header class="jumbotron">
+		<h1>New Climb</h1>
+	</header>
+	<nav th:replace="template :: nav"></nav>
+
+
+	<form method="post">
+
+		<h1>New Climbing Session</h1>
+
+
+		<div class="form-group" th:class="${locError}? 'has-error'">
+			<label for="loc" class="control-label"><h4>Where?</h4> <input
+				type="text" name="loc" th:value="${loc}" class="form-control" /></label>&nbsp;&nbsp;
+			<span class="text-danger error" th:text="${locError}"></span>
+		</div>
+		<p class="text-warning info" th:text="${locGuide}"></p>
+		<br />
+
+
+		<div>
+			<h4>When?</h4>
+
+			<div class="form-group" th:class="${monthError}? 'has-error'">
+				<label for="month" class="control-label"><h5>Month:</h5> <input
+					type="text" name="month" th:value="${month}" class="form-control" /></label>&nbsp;&nbsp;<span
+					class="text-danger error" th:text="${monthError}"></span>
+			</div>
+
+
+			<div class="form-group" th:class="${dayError}? 'has-error'">
+				<label for="day" class="control-label"><h5>Day:</h5> <input
+					type="text" name="day" th:value="${day}" class="form-control" /></label>&nbsp;&nbsp;<span
+					class="text-danger error" th:text="${dayError}"></span>
+			</div>
+
+
+			<div class="form-group" th:class="${hourError}? 'has-error'">
+				<label for="hour" class="control-label"><h5>Hour:</h5> <input
+					type="text" name="hour" th:value="${hour}" class="form-control" /></label>&nbsp;&nbsp;<span
+					class="text-danger error" th:text="${hourError}"></span>
+			</div>
+
+
+			<div class="form-group" th:class="${minuteError}? 'has-error'">
+				<label for="minute" class="control-label"><h5>Minute:</h5> <input
+					type="text" name="minute" th:value="${minute}" class="form-control" /></label>&nbsp;&nbsp;<span
+					class="text-danger error" th:text="${minuteError}"></span>
+			</div>
+		</div>
+		<p class="text-warning info" th:text="${whenGuide}"></p>
+		<br />
+
+
+		<div class="form-group" th:class="${durationError}? 'has-error'">
+			<label for="duration" class="control-label"><h4>How
+					Long?</h4>
+				<input type="text" name="duration" th:value="${duration}"
+				class="form-control" /></label>&nbsp;&nbsp; <span class="text-danger error"
+				th:text="${durationError}"></span>
+		</div>
+		<p class="text-warning info" th:text="${durationGuide}"></p>
+
+
+		<button class="btn btn-primary" type="submit">Submit Request</button>
+
+	</form>
+
+
+
+
+</body>
+</html>
+<!-- 
+//Disable dates before today (can't set appts in the past)
+                    defaultDate: "11/1/2013",
+                    disabledDates: [
+                        moment("12/25/2013"),
+                        new Date(2013, 11 - 1, 21),
+                        "11/22/2013 00:53"
+                        
+                         <script type="text/javascript" src="/scripts/bootstrap-datetimepicker.*js"></script>
+                        
+
+ -->

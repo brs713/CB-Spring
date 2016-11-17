@@ -3,56 +3,51 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <section th:fragment="boulderTab">
-
-	<p>
-		I usually practice: <span>
+	<h3>BOULDERING</h3>
+	<h4>I usually practice:</h4>
+	<div class="row">
+		<div class="col-md-4">
 			<div class="row">
-
-				<div class="row col-md-4">
-					<div class="dropdown col-md-6">
-						<span> min: </span>
-						<button class="btn btn-default dropdown-toggle" type="button"
-							id="boulderMin" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="true">
-							-Select-&nbsp;&nbsp;&nbsp;<span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu climb-grades" aria-labelledby="boulderMin">
-							<li>VB</li>
-							<li>V0</li>
-							<li>V1</li>
-							<li>V2</li>
-							<li>V3</li>
-							<li>V4</li>
-							<li>V5</li>
-							<li>V6+</li>
-						</ul>
-					</div>
-					<div class="dropdown col-md-6">
-						<span>&nbsp;&nbsp;&nbsp;&nbsp;max: </span>
-						<button class="btn btn-default dropdown-toggle" type="button"
-							id="boulderMax" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="true">
-							-Select-&nbsp;&nbsp;&nbsp;<span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu climb-grades" aria-labelledby="boulderMax">
-							<li>VB</li>
-							<li>V0</li>
-							<li>V1</li>
-							<li>V2</li>
-							<li>V3</li>
-							<li>V4</li>
-							<li>V5</li>
-							<li>V6</li>
-							<li>V7</li>
-							<li>V8+</li>
-						</ul>
-					</div>
+				<div class="col-md-6 form-group">
+					<label for="boulderMin">Min:</label> <select class="form-control"
+						name="boulderMin" id="boulderMin">
+						<option th:text="${boulderMin} ? ((${boulderMin} != -1) ? 'No Rating' : ' -Select- ' )"></option>
+						<option th:selected="(${boulderMin} == 1) ? 'selected'">V0</option>
+						<option th:selected="(${boulderMin} == 2) ? 'selected'">V1</option>
+						<option th:selected="(${boulderMin} == 3) ? 'selected'">V2</option>
+						<option th:selected="(${boulderMin} == 4) ? 'selected'">V3</option>
+						<option th:selected="(${boulderMin} == 5) ? 'selected'">V4</option>
+						<option th:selected="(${boulderMin} == 6) ? 'selected'">V5</option>
+						<option th:selected="(${boulderMin} == 7) ? 'selected'">V6</option>
+						<option th:selected="(${boulderMin} == 8) ? 'selected'">V7</option>
+						<option th:selected="(${boulderMin} == 9) ? 'selected'">V8+</option>
+					</select>
 				</div>
-				<div class="col-md-4"></div>
-				<div class="col-md-4"></div>
-			</div> - max-<span>lvl-dropdown></span>
-		</span>
-	</p>
+				<div class="col-md-6 form-group">
+					<label for="boulderMax">Max:</label> <select class="form-control"
+						name="boulderMax" id="boulderMax">
+						<option th:text="${boulderMax} ? ((${boulderMax} != -1) ? 'No Rating' : ' -Select- ' )"></option>
+						<option th:selected="(${boulderMax} == 1) ? 'selected'">V0</option>
+						<option th:selected="(${boulderMax} == 2) ? 'selected'">V1</option>
+						<option th:selected="(${boulderMax} == 3) ? 'selected'">V2</option>
+						<option th:selected="(${boulderMax} == 4) ? 'selected'">V3</option>
+						<option th:selected="(${boulderMax} == 5) ? 'selected'">V4</option>
+						<option th:selected="(${boulderMax} == 6) ? 'selected'">V5</option>
+						<option th:selected="(${boulderMax} == 7) ? 'selected'">V6</option>
+						<option th:selected="(${boulderMax} == 8) ? 'selected'">V7</option>
+						<option th:selected="(${boulderMax} == 9) ? 'selected'">V8</option>
+						<option th:selected="(${boulderMax} == 10) ? 'selected'">V9</option>
+						<option th:selected="(${boulderMax} == 11) ? 'selected'">V10+</option>
+					</select>
+				</div>
+
+			</div>
+		</div>
+		<div class="col-md-4"></div>
+		<div class="col-md-4"></div>
+	</div>
+		
+
 
 		
 </section>

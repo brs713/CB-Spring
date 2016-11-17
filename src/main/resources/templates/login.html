@@ -6,24 +6,29 @@
 
 <body>
 
+	<header class="jumbotron">
+		<h1>Log In</h1>
+	</header>
+	<nav th:replace="template :: nav"></nav>
+	
+	
 	<form method="post">
 		
 		<h1>Log In</h1>
-		
+		<br />
 		<div class="form-group"  th:class="${usrError}? 'has-error'">
 			<label for="name" class="control-label">Username:
-				<br />
+				
 				<input type="text" name="username" th:value="${name}" class="form-control" /></label>&nbsp;&nbsp;<span class="text-danger error" th:text="${usrError}"></span>
 		</div>
 			<p class="text-warning info" th:text="${usrGuide}"></p>
-			<br />
 
 		<div class="form-group"  th:class="${pwdError}? 'has-error'">
 			<label for="name" class="control-label">Password:
-				<br />
+				
 				<input type="password" name="password" class="form-control" /></label>&nbsp;&nbsp;<span class="text-danger error" th:text="${pwdError}"></span>
 		</div>
-			<p class="text-warning info" th:text="${pwdGuide}"></p>
+			<p class="text-warning info" th:text="${pwdGuide}"></p><br />
 
 		<button class="btn btn-primary" type="submit">Log In</button>
 		

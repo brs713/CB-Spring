@@ -6,18 +6,34 @@
 
 <body>
 
+
+	<header class="jumbotron">
+		<h1>Profile</h1>
+	</header>
+	<nav th:replace="template :: nav"></nav>
+
+
 	<form method="post">
 
 		<h1>Profile</h1>
 
-		<h4>Name</h4>
-		<label for="name"> <input name="name" type="text" /> <!-- th:value="${user.name}" -->
-		</label> <label for="pic"> <img height="200px" width="200px"
+		
+		<div class="form-group"  th:class="${nameError}? 'has-error'">
+			<label for="name" class="control-label"><h4>Name</h4>
+				<br />
+				<input type="text" name="name" th:value="${name}" class="form-control" /></label>&nbsp;&nbsp;
+				<span class="text-danger error" th:text="${nameError}"></span>
+		</div>
+			<p class="text-warning info" th:text="${nameGuide}"></p>
+		
+		
+		<label for="pic"> <img height="200px" width="200px"
 			border="1px solid black" th:src="@{/img/cal2_2.png}" /> <!-- ${user.pic} -->
 		</label>
+		<button> Upload a pic </button>
 
-		<h5>My Gyms:</h5>
-		<label for="gyms"> <input name="gyms" type="text" /> <!-- ***figure out how to make LaunchCode style selection boxes*** -->
+		<h5>My Gym:</h5>
+		<label for="gym"><input name="gym" type="text" th:value="${gym}"/> <!-- ***figure out how to make LaunchCode style selection boxes*** -->
 		</label>
 
 

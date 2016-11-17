@@ -1,13 +1,9 @@
 package com.bradlav.models;
 
-import java.awt.Image;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -17,7 +13,7 @@ public class Profile extends AbstractEntity{
 	private User user;
 	private String name; 
 //	private Image pic;
-	private String[] gymsAndCrags;
+	private String homeGym;
 
 	private int leadPracticeMin;
 	private int leadPracticeMax;
@@ -27,19 +23,25 @@ public class Profile extends AbstractEntity{
 	private int boulderPracticeMax;
 
 	// CONSTRUCTORS
-	public Profile(User user, String name, Image pic, String[] gymsAndCrags, int leadPracticeMin, int leadPracticeMax,
+	public Profile(User user, String name, String homeGym, int leadPracticeMin, int leadPracticeMax,
 			int topropePracticeMin, int topropePracticeMax, int boulderPracticeMin, int boulderPracticeMax) {
 		super();
 		this.user = user;
 		this.name = name;
 //		this.pic = pic;
-		this.gymsAndCrags = gymsAndCrags;
+		this.homeGym = homeGym;
 		this.leadPracticeMin = leadPracticeMin;
 		this.leadPracticeMax = leadPracticeMax;
 		this.topropePracticeMin = topropePracticeMin;
 		this.topropePracticeMax = topropePracticeMax;
 		this.boulderPracticeMin = boulderPracticeMin;
 		this.boulderPracticeMax = boulderPracticeMax;
+	}
+	
+	// Main constructor
+	public Profile(User user, String name) {
+		this.user = user;
+		this.name = name;
 	}
 
 	// No-arg Constructor
@@ -76,18 +78,20 @@ public class Profile extends AbstractEntity{
 //		this.pic = pic;
 //	}
 
-	@Column(name = "gymsandcrags")
-	public String[] getGymsAndCrags() {
-		return gymsAndCrags;
+	@Column(name = "homeGym")
+	public String getHomeGym() {
+		return homeGym;
 	}
-	public void setGymsAndCrags(String[] gymsAndCrags) {
-		this.gymsAndCrags = gymsAndCrags;
+
+	public void setHomeGym(String homeGym) {
+		this.homeGym = homeGym;
 	}
 
 	@Column(name = "leadpracmin")
 	public int getLeadPracticeMin() {
 		return leadPracticeMin;
 	}
+
 	public void setLeadPracticeMin(int leadPracticeMin) {
 		this.leadPracticeMin = leadPracticeMin;
 	}
@@ -132,6 +136,20 @@ public class Profile extends AbstractEntity{
 		this.boulderPracticeMax = boulderPracticeMax;
 	}
 
+//	public void deleteObject(int id)
+//	{
+//	    String deleteStatement = "DELETE FROM hosts WHERE id=?";
+//	    try
+//	    {
+//	        getSimpleJdbcTemplate().update(deleteStatement, id);
+//	    }
+//	    catch (RuntimeException runtimeException) 
+//	    {
+//	        System.err.println("***NagiosHostDao::deleteObject, RuntimeException occurred, message follows.");
+//	        System.err.println(runtimeException);
+//	        throw runtimeException;
+//	    }
+//	}
 
 
 }

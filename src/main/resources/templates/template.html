@@ -2,45 +2,67 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="htmlhead">
 
-<meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
-<meta content="utf-8" http-equiv="encoding"/>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+<meta content="utf-8" http-equiv="encoding" />
 
 
-<!-- Latest compiled JavaScript - JQuery, Bootstrap, JQuery Mobile -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
- integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<!-- Latest compiled JavaScript - JQuery, Bootstrap, JQuery Mobile, Moment.js-->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	crossorigin="anonymous"></script>
 
 
 <!-- Latest compiled and minified CSS - Bootstrap, JQuery Mobile-->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
- integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
-<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css"/>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous" />
+<link rel="stylesheet"
+	href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" />
 
 
-<!-- My js & CSS file -->
+<!-- My js & CSS files -->
 <script src="/js/climb.js" th:href="@{js/climb.js}"></script>
-<link rel="stylesheet" href="/css/climb.css" th:href="@{css/climb.css}"/>
+<link rel="stylesheet" href="/css/climb.css" th:href="@{css/climb.css}" />
 
 <!-- Thymeleaf Bootstrap & JQuery WebJARs -->
-	<!-- from https://springframework.guru/spring-boot-web-application-part-2-using-thymeleaf/ -->
-<link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
-      th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
-      rel="stylesheet" media="screen" />
- 
-<script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
-        th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+<!-- from https://springframework.guru/spring-boot-web-application-part-2-using-thymeleaf/ -->
+<link
+	href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+	th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
+	rel="stylesheet" media="screen" />
 
+<script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+	th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+
+
+<!-- http://eonasdan.github.io/bootstrap-datetimepicker/Installing/ -->
+	
+	
 <title>Climbing Buddy</title>
 
 </head>
 
 <body>
-	<div class="container-fluid">
+<nav th:fragment="nav">
+	<ul>
+		<li style="display: inline-block; padding-right: 20px"><a href="signup.html" th:href="@{/signup}">signup</a></li>
+		<li style="display: inline-block; padding-right: 20px"><a href="login.html" th:href="@{/login}">login</a></li>
+		<li style="display: inline-block; padding-right: 40px"><a href="profile.html" th:href="@{/profile}">profile</a></li>
+		<li style="display: inline-block; padding-right: 10px"><a href="loc.html" th:href="@{/loc}">loc</a></li>
+		<li style="display: inline-block; padding-right: 10px"><a href="cal.html" th:href="@{/cal}">cal</a></li>
+		<li style="display: inline-block; padding-right: 40px"><a href="ppl.html" th:href="@{/ppl}">ppl</a></li>
+		<li style="display: inline-block; padding-right: 20px"><a href="comm.html" th:href="@{/comm}">comm</a></li>
+		<li style="display: inline-block"><a href="newclimb.html" th:href="@{/newclimb}">newclimb</a></li>
+	
+	</ul>
+</nav>
+		
 
 
-
-	</div>
+	<div class="container-fluid"></div>
 </body>
 </html>

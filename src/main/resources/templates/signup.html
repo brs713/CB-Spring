@@ -7,33 +7,40 @@
 
 <body>
 
+
+	<header class="jumbotron">
+		<h1>Sign Up</h1>
+	</header>
+	<nav th:replace="template :: nav"></nav>
+	
+
 	<form method="post">
 		
 		<h1>Signup</h1>
 		
 		<h6>Note:  All Fields Required</h6>
 
-		<label for="name">Username:
+		<label for="name">Username:</label>
 			<br />
-			<input type="text" name="username" th:value="${name}" /></label>&nbsp;&nbsp;<span class="error" th:text="${usrError}"></span>
+			<input type="text" name="username" th:value="${name}" />&nbsp;&nbsp;<span class="error" th:text="${usrError}"></span>
 		<br />
 			<p class="info" th:text="${usrGuideLength}"></p>
 			<p class="info" th:text="${usrGuideAllowed}"></p>
 			
-		<label for="name">Password:
+		<label for="name">Password:</label>
 			<br />
-			<input type="password" name="password" /></label>&nbsp;&nbsp;<span th:attr="class=${errClass}" th:text="${pwdError}"></span>
+			<input type="password" name="password" />&nbsp;&nbsp;<span th:attr="class=${errClass}" th:text="${pwdError}"></span>
 		<br />
 			<p class="info" th:text="${pwdGuide}"></p>
 			
-		<label for="name">Confirm Password:
+		<label for="name">Confirm Password:</label>
 			<br />
-			<input type="password" name="confPassword" /></label>&nbsp;&nbsp;<span class="error" th:text="${cnfError}"></span>
+			<input type="password" name="confPassword" />&nbsp;&nbsp;<span class="error" th:text="${cnfError}"></span>
 		<br />
 
-		<label for="name">E-mail Address:
+		<label for="name">E-mail Address:</label>
 			<br />
-			<input type="text" name="email" th:value="${email}"/></label>&nbsp;&nbsp;<span class="error" th:text="${emlError}"></span>
+			<input type="text" name="email" th:value="${email}"/>&nbsp;&nbsp;<span class="error" th:text="${emlError}"></span>
 		<br/>
 		<button type="submit">Sign Up!</button>
 		
