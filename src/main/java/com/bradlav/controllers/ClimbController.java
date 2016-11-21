@@ -24,27 +24,36 @@ import com.bradlav.models.User;
 public class ClimbController extends AbstractController {
 	
 	static final int YEAR = 2016;
-	static final int MINUTE = 60 * 1000;
-	static final int HOUR = 60 * MINUTE;
+	static final long MINUTE = 60 * 1000;
+	static final long HOUR = 60 * MINUTE;
 
 	
  
 	// NEWCLIMB
 	@RequestMapping(value = "/newclimb", method = RequestMethod.GET)
-    String newclimb(){
+    String newclimbGet(HttpServletRequest request, Model model) {
+
+		// get this session's user
+		HttpSession thisSession = request.getSession();
+		User user = getUserFromSession(thisSession);
+		model.addAttribute("user_logged", user.getUsername());
 
 //		Date now = new Date();
 // 		System.out.println("\n\nnow is " + now + "\n\n");
 //		now is Thu Nov 17 14:14:09 CST 2016
-
 		
         return "newclimb";
     }
 	
 
 	@RequestMapping(value = "/newclimb", method = RequestMethod.POST)
-	String newclimb(HttpServletRequest request, Model model) {
-		
+	String newclimbPost(HttpServletRequest request, Model model) {
+
+		// get this session's user
+		HttpSession thisSession = request.getSession();
+		User user = getUserFromSession(thisSession);
+		model.addAttribute("user_logged", user.getUsername());
+
 		// errors
 		String locError = "Invalid location.";
 		//String locGuide = "";
@@ -144,12 +153,7 @@ public class ClimbController extends AbstractController {
 			// retry
 			return "newclimb";
 		}
-		
-		
-		// get this session's user
-		HttpSession thisSession = request.getSession();
-		User user = getUserFromSession(thisSession);
-		
+
 		// create a new object
 		ClimbSession climb = new ClimbSession();
 		
@@ -162,15 +166,20 @@ public class ClimbController extends AbstractController {
  		// process data to store values in new variables
  		Calendar c = Calendar.getInstance();
  		c.clear();
- 		c.set(Calendar.MONTH, Integer.parseInt(month));
+ 		c.set(Calendar.DAY_OF_MONTH, Integer.parseInt(day));
+ 		c.set(Calendar.MONTH, Integer.parseInt(month) - 1);
  		c.set(Calendar.YEAR, YEAR);
  		startsWhen = c.getTime();
+ 		long startsWhenLong = startsWhen.getTime() 
+ 				+ (Long.parseLong(hour) * HOUR)
+ 				+ (Long.parseLong(minute) * MINUTE);
+ 		startsWhen = new Date(startsWhenLong);
  		
  		System.out.println("\n\nstartsWhen is " + startsWhen + "\n\n"); 		
  		
- 		if (duration != null) {
+ 		if (duration != "") {
  			long t= startsWhen.getTime();
- 			endsWhen = new Date(t + (Long.parseLong(duration) * (long) MINUTE));
+ 			endsWhen = new Date(t + (Long.parseLong(duration) * MINUTE));
  			climb.setEndTime(endsWhen);
  		}
  		
@@ -187,40 +196,76 @@ public class ClimbController extends AbstractController {
 		climbDao.save(climb);
 		
 		// redirect
-		return "redirect:/";
+		return "redirect:loc";
 		
     }
 	
 	
 	// LOC
 	@RequestMapping(value = "/loc", method = RequestMethod.GET)
-    String locations(){
+    String locationsGet(HttpServletRequest request, Model model){
+
+		// get this session's user
+		HttpSession thisSession = request.getSession();
+		User user = getUserFromSession(thisSession);
+		model.addAttribute("user_logged", user.getUsername());
+
         return "loc";
     }
 	@RequestMapping(value = "/loc", method = RequestMethod.POST)
-	String locations(HttpServletRequest request, Model model) {
+	String locationsPost(HttpServletRequest request, Model model) {
+
+		// get this session's user
+		HttpSession thisSession = request.getSession();
+		User user = getUserFromSession(thisSession);
+		model.addAttribute("user_logged", user.getUsername());
+
         return "loc";
     }
 	
 	
 	// CAL
 	@RequestMapping(value = "/cal", method = RequestMethod.GET)
-    String calendar(){
+    String calendarGet(HttpServletRequest request, Model model){
+
+		// get this session's user
+		HttpSession thisSession = request.getSession();
+		User user = getUserFromSession(thisSession);
+		model.addAttribute("user_logged", user.getUsername());
+
         return "cal";
     }
 	@RequestMapping(value = "/cal", method = RequestMethod.POST)
-	String calendar(HttpServletRequest request, Model model) {
-        return "cal";
+	String calendarPost(HttpServletRequest request, Model model) {
+
+		// get this session's user
+		HttpSession thisSession = request.getSession();
+		User user = getUserFromSession(thisSession);
+		model.addAttribute("user_logged", user.getUsername());
+
+       return "cal";
     }
 
 	
 	// PPL
 	@RequestMapping(value = "/ppl", method = RequestMethod.GET)
-    String people(){
+    String peopleGet(HttpServletRequest request, Model model){
+
+		// get this session's user
+		HttpSession thisSession = request.getSession();
+		User user = getUserFromSession(thisSession);
+		model.addAttribute("user_logged", user.getUsername());
+
         return "ppl";
     }
 	@RequestMapping(value = "/ppl", method = RequestMethod.POST)
-	String people(HttpServletRequest request, Model model) {
+	String peoplePost(HttpServletRequest request, Model model) {
+
+		// get this session's user
+		HttpSession thisSession = request.getSession();
+		User user = getUserFromSession(thisSession);
+		model.addAttribute("user_logged", user.getUsername());
+
         return "ppl";
     }
 

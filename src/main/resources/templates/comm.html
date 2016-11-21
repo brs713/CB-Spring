@@ -1,9 +1,24 @@
 <!DOCTYPE html>
-
 <html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="template :: htmlhead">
 
-<section th:fragment="comm">
+</head>
 
-</section>
+<body>
+
+
+	<header class="jumbotron">
+		<h1>Profile</h1>
+	</header>
+	<nav th:replace="template :: nav"></nav>
+
+
+	<form method="post">
+		<div th:utext="${div}">
+
+		</div>
+	</form>
+
+</body>
 
 </html>

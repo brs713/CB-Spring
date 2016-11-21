@@ -56,7 +56,15 @@
 		<li style="display: inline-block; padding-right: 10px"><a href="cal.html" th:href="@{/cal}">cal</a></li>
 		<li style="display: inline-block; padding-right: 40px"><a href="ppl.html" th:href="@{/ppl}">ppl</a></li>
 		<li style="display: inline-block; padding-right: 20px"><a href="comm.html" th:href="@{/comm}">comm</a></li>
-		<li style="display: inline-block"><a href="newclimb.html" th:href="@{/newclimb}">newclimb</a></li>
+		<li style="display: inline-block; padding-right: 40px"><a href="newclimb.html" th:href="@{/newclimb}">newclimb</a></li>
+		<li th:if="${user_logged}" style="display: inline-block; padding-right: 20px" th:text="${user_logged} ? 'Hi, ' + ${user_logged}"></li>
+		<li th:if="${user_logged}" style="display: inline-block; padding-right: 20px"><a href="logout.html" th:href="@{/logout}">logout</a></li>
+		
+<!-- This didn't work.  This data would have to be put in every controller method.
+		<li style="display: inline-block; padding-right: 20px">
+			<span th:replace="comm :: comm"></span>
+		</li>
+ -->
 	
 	</ul>
 </nav>

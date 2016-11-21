@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="template :: htmlhead">
+
+</head>
+
+<body>
+
+
+	<header class="jumbotron">
+		<h1>Profile</h1>
+	</header>
+	<nav th:replace="template :: nav"></nav>
+
+
+	<form method="post">
+
+<!-- 		<span th:fragment="comm">
+		
+		<button data-toggle="modal" data-target=".bs-example-modal-lg">The Link</button>
+
+			<div class="modal fade bs-example-modal-lg" tabindex="-1"
+				role="dialog" aria-labelledby="myLargeModalLabel">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content container">
+
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<h4 class="modal-title" id="exampleModalLabel">Notifications</h4>
+						</div>
+ -->
+<!-- 						<div class="panel panel-default"> -->
+<!-- 
+							<div class="panel panel-default">
+								<div class="panel-body">Basic panel example</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-body">Basic panel example</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-body">Basic panel example</div>
+							</div>
+ -->
+							
+							<p th:utext="${msg}" >This is where the message goes</p>
+							<p th:utext="${msg2}" >This is where the message goes</p>
+							<p>text test</p>
+							<p th:text="${something}" >This is where the message goes</p>
+							<p class="text-warning info" th:text="${nameGuide}"></p>
+
+<!-- 						</div> -->
+<!-- 
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">Close</button>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		<script>.modal('handleUpdate')</script>
+		</span>
+ -->
+	</form>
+
+</body>
+
+</html>

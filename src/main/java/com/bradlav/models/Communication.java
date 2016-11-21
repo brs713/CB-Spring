@@ -22,18 +22,18 @@ public class Communication extends AbstractEntity {
 	private User fromUser;
 	private User toUser;
 	private ClimbSession climb;
-	private Date messageCreated;
+	private Date messageCreated;  //I want this as final, but Hibernate doesn't like that.
 
 	
 	
-	public Communication(User fromUser, User toUser, ClimbSession climb, Date messageCreated) {
+	public Communication(User fromUser, User toUser, ClimbSession climb) {
 		super();
 //		incrementSerialNumber();
 //		this.messageId = serialNumber;
 		this.fromUser = fromUser;
 		this.toUser = toUser;
 		this.climb = climb;
-		this.messageCreated = messageCreated;
+		this.messageCreated = new Date();
 	}
 
 

@@ -31,13 +31,14 @@ public class AuthenticationController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
-	public String signupForm() {
+	public String signupFormGet(HttpServletRequest request, Model model) {
+
 		return "signup";
 	}
 
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
-	public String signup(HttpServletRequest request, Model model) {
-
+	public String signupPost(HttpServletRequest request, Model model) {
+		
 		AuthenticationError error = new AuthenticationError();		
 
 		String username = request.getParameter("username");
@@ -102,13 +103,14 @@ public class AuthenticationController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String loginForm() {
+	public String loginFormGet(HttpServletRequest request, Model model) {
+		
 		return "login";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(HttpServletRequest request, Model model) {
-
+	public String loginPost(HttpServletRequest request, Model model) {
+		
 		AuthenticationError error = new AuthenticationError();
 
 		String username = request.getParameter("username");
@@ -136,7 +138,6 @@ public class AuthenticationController extends AbstractController {
 			return "login";
 		}
 
-
 		login(request, user);
 
 		return "redirect:loc";
@@ -145,7 +146,7 @@ public class AuthenticationController extends AbstractController {
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpServletRequest request){
 		request.getSession().invalidate();
-		return "redirect:/";
+		return "redirect:login";
 	}
 
 

@@ -18,14 +18,14 @@ public interface CommunicationDao extends CrudRepository<Communication, Integer>
 	
 	List<Communication> findAll();
 	
-	Communication findByFromUser(User fromUser);
-	Communication findByFromUser(int fromUid);
+	List<Communication> findByFromUser(User fromUser);
+	List<Communication> findByFromUser(int fromUid);
 	
-	Communication findByToUser(User toUser);
-	Communication findByToUser(int toUid);
+	List<Communication> findByToUser(User toUser);
+	List<Communication> findByToUser(int toUid);
 	
-	Communication findByClimb(ClimbSession climb);
-	Communication findByClimb(int climbId);
+	List<Communication> findByClimb(ClimbSession climb);
+	List<Communication> findByClimb(int climbId);
 	
 	Communication findByMessageCreated(Date created);
 	
