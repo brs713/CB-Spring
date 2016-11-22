@@ -22,5 +22,19 @@ $(document).ready(function() {
 		$(this).attr('src', 'img/ppl_black.png');
 	});
 
+//NOT WORKING RIGHT NOW... FIX IT!	
+    // DISABLE MAP SCROLL ON LOAD, TOGGLE ON CLICK
+    let mapWrap = $('#map-wrap');
+    let map = $('#map');
+    
+    map.addClass('scrolloff');
+    mapWrap.click(map.toggleClass('scrolloff'));
 
+    // re-enable scrolling on mouseleave
+    mapWrap.mouseleave(function () {
+        map.addClass('scrolloff'); // set the pointer events to none when mouse leaves the map area
+    });
+	
 });
+
+

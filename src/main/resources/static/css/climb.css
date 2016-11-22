@@ -1,13 +1,41 @@
+
+
+/*  ---  IDs  ---  */
+
 #main {
-    /* Mobile/Tablet styles (xs, sm) */
-    margin-left: auto;
-    margin-right: auto;
-/*     border: 1px solid #F00; */
+	/* Mobile/Tablet styles (xs, sm) */
+	margin-left: auto;
+	margin-right: auto;
+	/*     border: 1px solid #F00; */
 }
 
 #detail {
-    /* Mobile/Tablet styles (xs, sm) */
-    margin-left: auto;
-    margin-right: auto;
-    /*border: 1px solid #00F;*/
+	/* Mobile/Tablet styles (xs, sm) */
+	margin-left: auto;
+	margin-right: auto;
+	/*border: 1px solid #00F;*/
+}
+
+#map {
+	max-width: 600px;
+	min-height: 300px;
+	background-color: grey;
+}
+
+
+/*  ---  CLASSES  ---  */
+
+.scrolloff {
+    pointer-events: none;
+}
+
+
+
+
+/*  ---  XS SCREEN ONLY STYLES  ---  */
+@media ( max-width : 768px) {
+
+	#map {
+		margin: auto;
+	}
 }

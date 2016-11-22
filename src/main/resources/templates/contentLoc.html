@@ -2,24 +2,33 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <section th:fragment="contentLocDetail" th:if="${locContent}">
-	<h2>Crags</h2>	
-	<h4 th:each="loc : ${locs}" th:text="${loc}" th:if="${loc} != '-Crags-'">
-	
-	</h4>
+	<h3>Crags</h3>
+	<p th:each="loc : ${locs}" th:text="${loc}"></p>  <!-- th:if="${loc} != '-Crags-'" -->
 </section>
 
 <section th:fragment="contentLocMain" th:if="${locContent}">
 	<div class="row">
 		<div id="loc-dropdown" class="col-xs-12 hidden-sm hidden-md hidden-lg">
-
+	<label for="location"><h4>Crags</h4></label>
 			<select class="form-control" name="location">
-				<option th:each="loc : ${locs}" th:text="${loc}"/>
+				<option th:each="loc : ${locs}" th:text="${loc}" />
 			</select>
 
 		</div>
 	</div>
-	<div id="map" class="row"></div>
+	<div class="row">
+		<div id="map-wrap">
+		<div id="map">hi</div>
+		</div>
+	</div>
+	
+	
+	<script async="async" defer="defer" src="/js/map.js" th:href="@{js/map.js}"></script>
+	<script async="async" defer="defer" src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCeiaJwCSYtqaltd3ZtN_eGOG6pJ9evh3c&amp;callback=initMap'></script>
+	
 </section>
+
+
 
 </html>
 

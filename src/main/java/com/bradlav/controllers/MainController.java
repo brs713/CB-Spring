@@ -44,7 +44,6 @@ public class MainController extends AbstractController {
 		model.addAttribute("climbs", climbs);
 		model.addAttribute("profiles", profiles);
 
-
         return "cal";
     }
 	@RequestMapping(value = "/cal", method = RequestMethod.POST)
@@ -76,7 +75,7 @@ public class MainController extends AbstractController {
 
 		// need to create a list of locations
 		List<String> locs = new ArrayList<String>();
-		locs.add("-Crags-");
+//		locs.add("-Crags-");
 		for (ClimbSession climb : climbs) {
 			if (!(locs.contains(climb.getLocation()))) {
 				locs.add(climb.getLocation());
