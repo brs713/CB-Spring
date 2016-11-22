@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<section th:fragment="contentPplDetail" th:if="${pplContent}">
+	<div th:each="profile : ${profiles}">
+		<!--  class="panel panel-success panel-body"> -->
+		<button id="${profile.name}">
+			<h4 th:text="${profile.name}"></h4>
+		</button>
+	</div>
+
+
+
+
+</section>
+
+<section th:fragment="contentPplMain" th:if="${pplContent}">
+
+	<div th:each="profile : ${profiles}">
+		<!--  class="panel panel-success panel-body"> -->
+		<h4 th:text="${profile.name}"></h4>
+
+		<thblock th:each="climb : ${climbs}">
+
+		<div th:if="${profile.user} == ${climb.userInitiate}">
+			<div class="panel panel-info panel-body"  style="display: inline-block;">
+				<span th:text="${climb.scheduledTime}"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+				<span th:text="${climb.location}"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+				<!-- 	 	<span th:if="${climb.isAccepted}" th:text="${climb.isAccepted}"></span> -->
+			</div>
+			<button class="btn btn-info btn-lg" style="display: inline-block;"
+				disabled="disabled">Accept</button>
+		</div>
+
+		<!-- 		
+		<div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                    <div class="input-group-btn">
+                        <button class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></button>
+                        <button class="btn btn-primary"><i class="glyphicon glyphicon-wrench"></i></button>
+                    </div>
+                </div>
+ --> </thblock>
+
+
+	</div>
+
+</section>
+
+</html>
+
+
+

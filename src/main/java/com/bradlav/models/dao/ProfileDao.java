@@ -14,10 +14,12 @@ import com.bradlav.models.User;
 @Repository
 public interface ProfileDao extends CrudRepository<Profile, Integer> {
 	
-	
 	Profile findByUser(User user);
 	List<Profile> findByName(String name);  //this searches just name, so it could return multiples.
+
+	List<Profile> findAll();
 	
+
 /*  Future functionality:
   
 	- finding partners by a certain skill level via methods like this:

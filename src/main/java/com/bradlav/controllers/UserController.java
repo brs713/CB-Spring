@@ -1,6 +1,5 @@
 package com.bradlav.controllers;
 
-import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -216,10 +215,10 @@ public class UserController extends AbstractController {
 		// query for the data needed & save it
 		List<Communication> comms = commDao.findByToUser(user);
 		
- 		
+
  		String m = "";
  		for (Communication comm : comms) {
- 			String[] days = new DateFormatSymbols().getShortWeekdays();
+// 			String[] days = new DateFormatSymbols().getShortWeekdays();
  			SimpleDateFormat beginning = new SimpleDateFormat(" E,  MM-d ");
  			SimpleDateFormat middle  = new SimpleDateFormat(" h:mm");
  			Calendar c = Calendar.getInstance();
@@ -228,7 +227,7 @@ public class UserController extends AbstractController {
 
  			String person = profileDao.findByUser(comm.getFromUser()).getName();
  			String place = comm.getClimb().getLocation();
- 			String weekday = days[c.get(Calendar.DAY_OF_WEEK)];
+// 			String weekday = days[c.get(Calendar.DAY_OF_WEEK)];
  			String ampm = (c.get(Calendar.AM_PM)) == 0 ? "am" : "pm";
 
  			m += "<p>" + person + " agreed to climb with you at "
@@ -241,7 +240,6 @@ public class UserController extends AbstractController {
  		System.out.println(m);
  		
  		model.addAttribute("div", m);
-		
 		
 		return "comm";
 	}

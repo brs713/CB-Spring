@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<section th:fragment="contentLocDetail" th:if="${locContent}">
+	<h2>Crags</h2>	
+	<h4 th:each="loc : ${locs}" th:text="${loc}" th:if="${loc} != '-Crags-'">
+	
+	</h4>
+</section>
+
+<section th:fragment="contentLocMain" th:if="${locContent}">
+	<div class="row">
+		<div id="loc-dropdown" class="col-xs-12 hidden-sm hidden-md hidden-lg">
+
+			<select class="form-control" name="location">
+				<option th:each="loc : ${locs}" th:text="${loc}"/>
+			</select>
+
+		</div>
+	</div>
+	<div id="map" class="row"></div>
+</section>
+
+</html>
+
+
