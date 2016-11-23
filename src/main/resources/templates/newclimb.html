@@ -17,7 +17,7 @@
 
 		<h1>New Climbing Session</h1>
 
-
+		<!-- 
 		<div class="form-group" th:class="${locError}? 'has-error'">
 			<label for="loc" class="control-label"><h4>Where?</h4> <input
 				type="text" name="loc" th:value="${loc}" class="form-control" /></label>&nbsp;&nbsp;
@@ -72,10 +72,121 @@
 
 
 		<button class="btn btn-primary" type="submit">Submit Request</button>
-
+ -->
 	</form>
 
+	<form id="new-climb-form" method="post">
 
+
+		<div class="row">
+		<div class="col-sm-1"></div>
+		<div class="row col-sm-8">
+				<div class="row col-xs-12">
+			<div class="wrap">
+				<div class="center">
+
+					Crags: <select name="location">
+						<option th:each="loc : ${locs}" th:text="${loc}" />
+					</select>
+				</div>
+			</div>
+		</div>
+		
+			<div class="col-xs-6">
+				<div class="wrap">
+					<div class="right">
+						<div id="new-climb-cal"></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-6">
+				<div class="wrap">
+					<div class="left">
+
+						<div class="row">
+							<table>
+								<tr>
+									<h5>Session Start Time:</h5>
+								</tr>
+								<tr>
+									<td class="clock clock-top"><span id="start-hour-plus"
+											class="clock clock-top glyphicon glyphicon-plus"></span></td>
+									<td class="ctr">&nbsp;</td>
+									<td class="clock clock-top"><span id="start-minute-plus"
+											class="clock clock-top glyphicon glyphicon-plus"></span></td>
+								</tr>
+								<tr>
+									<td class="clock clock-mid"><input id="start-hour" class="clock clock-mid"
+										name="start-hour" disabled="disabled"
+										th:value="${startHour} ? ${startHour} : '12'"></input></td>
+									<td class="ctr">&nbsp;:&nbsp;</td>
+									<td class="clock clock-mid"><input id="start-minute" class="clock clock-mid"
+										name="start-minute" disabled="disabled"
+										th:value="${startMinute} ? ${startMinute} : '00'"></input></td>
+									<td id="ampm" class="ctr">pm</td>
+								</tr>
+								<tr>
+									<td class="clock clock-btm"><span id="start-hour-minus"
+											class="clock clock-btm glyphicon glyphicon-minus"></span></td>
+									<td class="ctr">&nbsp;</td>
+									<td class="clock clock-btm"><span
+											id="start-minute-minus"
+											class="clock clock-btm glyphicon glyphicon-minus"></span></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="row">
+					<div class="col-xs-3"></div>
+					<div id="reset" class="col-xs-6 panel sm-panel panel-success panel-body center">reset</div>
+					<div class="col-xs-3"></div>
+					</div>
+					<div class="wrap">
+						<div class="left">
+							<div class="row">
+								<table>
+									<tr>
+										<h5>Session Duration:</h5>
+									</tr>
+									<tr>
+										<td class="clock clock-top"></td>
+										<td class="ctr-dur"><span id="dur-plus"	class="clock clock-top glyphicon glyphicon-plus"></span></td>
+										<td class="clock clock-top"></td>
+									</tr>
+									<tr>
+										<td class="clock clock-mid"><input id="dur-hour"
+											class="clock clock-mid" name="dur-hour" disabled="disabled"
+											th:value="${durHour} ? ${durHour} : '1'"></input></td>
+										<td class="ctr-dur">&nbsp;hr</td>
+										<td class="clock clock-mid"><input id="dur-minute"
+											class="clock clock-mid" name="dur-minute" disabled="disabled"
+											th:value="${durMinute} ? ${durMinute} : '30'"></input></td>
+										<td class="ctr-dur">&nbsp;min</td>
+									</tr>
+									<tr>
+										<td class="clock clock-btm"></td>
+										<td class="ctr-dur"><span id="dur-minus"
+												class="clock clock-btm glyphicon glyphicon-minus"></span></td>
+										<td class="clock clock-btm"></td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="wrap">
+					<div class="left">
+						<button class="btn btn-primary" type="submit">Submit
+							Request</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-3"></div>
+		</div>
+	</form>
 
 
 </body>

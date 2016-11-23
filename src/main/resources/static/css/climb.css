@@ -1,6 +1,20 @@
 
 
 /*  ---  IDs  ---  */
+#new-climb-form {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#new-climb-cal {
+	margin-top: 15px;
+	stop-color: purple;
+	background-color: yellow;
+}
+
+#reset {
+	padding: 0;
+}
 
 #main {
 	/* Mobile/Tablet styles (xs, sm) */
@@ -30,6 +44,87 @@
 }
 
 
+.wrap {
+	text-align: center;
+}
+
+.center {
+	display: inline-block;
+	margin: auto;
+	text-align: center;
+}
+
+.left {
+	display: inline-block;
+	margin-left: 0;
+	text-align: left;
+}
+
+.right {
+	display: inline-block;
+	margin-right: 0;
+	text-align: right;
+}
+
+.clock {
+	width: 40px;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+
+.ctr {
+	width: 20px;
+	margin: 0;
+	padding: 0 3px;
+	text-align: center;
+}
+
+.ctr-dur {
+	width: 25px;
+	margin: 0;
+	padding: 0;
+	text-align: left;
+}
+
+.clock-top {
+  vertical-align: bottom;
+  border: 0;
+  background-color: inherit;
+  color: green;
+}
+
+.clock-mid {
+	height: 30px;
+	vertical-align: middle;
+	margin-top: 8px;
+	margin-bottom: 4px;
+	border-radius: 8px;
+	font-family: monospace;
+}
+
+.clock-btm {
+  vertical-align: top;
+  border: 0;
+  background-color: inherit;
+  color: green;
+}
+
+.red {
+	border: 1px solid red;
+}
+
+.green {
+	border: 1px solid green;
+}
+
+.orange {
+	border: 1px solid orange;
+}
+
+.purple {
+	border: 1px solid purple;
+}
 
 
 /*  ---  XS SCREEN ONLY STYLES  ---  */

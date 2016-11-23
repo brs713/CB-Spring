@@ -1,0 +1,13 @@
+{
+  "name": "CB",
+  "homepage": "https://github.com/brs713/CB-Spring",
+  "authors": [
+    "brs713 <brs713@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "dependencies": {
+    "eonasdan-bootstrap-datetimepicker": "^4.17.43"
+  }
+}

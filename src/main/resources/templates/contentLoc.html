@@ -10,7 +10,7 @@
 	<div class="row">
 		<div id="loc-dropdown" class="col-xs-12 hidden-sm hidden-md hidden-lg">
 	<label for="location"><h4>Crags</h4></label>
-			<select class="form-control" name="location">
+			<select name="location">
 				<option th:each="loc : ${locs}" th:text="${loc}" />
 			</select>
 

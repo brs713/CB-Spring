@@ -22,7 +22,107 @@ $(document).ready(function() {
 		$(this).attr('src', 'img/ppl_black.png');
 	});
 
-//NOT WORKING RIGHT NOW... FIX IT!	
+	
+	// DATEPICKER
+	let now = new Date();
+    $('#new-climb-cal').datepicker({
+    	minDate: now,
+    	defaultDate: +1
+    });
+    console.log($('#new-climb-cal'));
+	
+    
+    // NEW CLIMB HOUR CONTROLS
+    /*
+    start-hour
+    start-hour-plus : 1
+    start-hour-minus : -1
+
+    start-minute
+    start-minute-plus : 15
+    start-minute-minus : -15
+    
+    dur-hour
+    dur-minute
+    dur-plus : 15
+    dur-minus : -15
+    */
+    
+    let startHour = $('#start-hour');
+    let startMinute = $('#start-minute');
+    let durHour = $('#dur-hour');
+    let durMinute = $('#dur-minute');
+    
+    $('#reset').click(function() {
+    	startHour.val(12);
+    	startMinute.val("00");
+    	durHour.val(1);
+    	durMinute.val(30);
+    });
+    
+    $('#start-hour-plus').click(function() {
+    	let newHour = parseInt(startHour.val()) + 1;
+    	if (newHour > 12) {
+    		newHour -= 12;
+    	}
+    	startHour.val(newHour);
+    	if (newHour == 12) {
+    		$('#ampm').text(($('#ampm').text() == 'pm') ? 'am' : 'pm');
+    	}
+
+    });
+    $('#start-hour-minus').click(function() {
+    	let newHour = parseInt(startHour.val()) - 1;
+    	if (newHour < 1) {
+    		newHour += 12;
+    	} 
+    	startHour.val(newHour);
+    	if (newHour == 11) {
+    		$('#ampm').text(($('#ampm').text() == 'pm') ? 'am' : 'pm');
+    	}
+
+    });    
+    
+    
+    $('#start-minute-plus').click(function() {
+    	let newMinute = parseInt(startMinute.val()) + 15;
+    	if (newMinute >= 60) {
+    		newMinute -= 60;
+    	} 
+    	startMinute.val((newMinute == 0) ? '00' : newMinute);
+    });
+    $('#start-minute-minus').click(function() {
+    	let newMinute = parseInt(startMinute.val()) - 15;
+    	if (newMinute < 0) {
+    		newMinute += 60;
+    	} 
+    	startMinute.val((newMinute == 0) ? '00' : newMinute);
+    });
+    
+
+    $('#dur-plus').click(function() {
+    	let newMinute = parseInt(durMinute.val()) + 15;
+    	if (newMinute >= 60) {
+    		newMinute -= 60;
+    		let newHour = parseInt(durHour.val()) + 1;
+        	durHour.val(newHour);
+    	} 
+    	durMinute.val((newMinute == 0) ? '00' : newMinute);
+    });
+    
+    $('#dur-minus').click(function() {
+    	let newMinute = parseInt(durMinute.val()) - 15;
+		let newHour = parseInt(durHour.val());
+    	if (newMinute < 0 && newHour == 0)
+        	return;
+    	else if (newMinute < 0 && newHour != 0) {
+    		newMinute += 60;
+    		durHour.val(newHour - 1);
+     	}
+    	durMinute.val((newMinute == 0) ? '00' : newMinute);
+    });
+    
+	
     // DISABLE MAP SCROLL ON LOAD, TOGGLE ON CLICK
     let mapWrap = $('#map-wrap');
     let map = $('#map');
