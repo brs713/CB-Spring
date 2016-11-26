@@ -7,11 +7,7 @@
 <body>
 
 
-	<header class="jumbotron">
-		<h1>New Climb</h1>
-	</header>
-	<nav th:replace="template :: nav"></nav>
-
+	<thblock th:replace="template :: header"></thblock>
 
 	<form method="post">
 
@@ -110,10 +106,10 @@
 								</tr>
 								<tr>
 									<td class="clock clock-top"><span id="start-hour-plus"
-											class="clock clock-top glyphicon glyphicon-plus"></span></td>
+											class="clock clock-top"><span class="glyphicon glyphicon-plus"></span></span></td>
 									<td class="ctr">&nbsp;</td>
 									<td class="clock clock-top"><span id="start-minute-plus"
-											class="clock clock-top glyphicon glyphicon-plus"></span></td>
+											class="clock clock-top"><span class="glyphicon glyphicon-plus"></span></span></td>
 								</tr>
 								<tr>
 									<td class="clock clock-mid"><input id="start-hour" class="clock clock-mid"
@@ -127,19 +123,19 @@
 								</tr>
 								<tr>
 									<td class="clock clock-btm"><span id="start-hour-minus"
-											class="clock clock-btm glyphicon glyphicon-minus"></span></td>
+											class="clock clock-btm"><span class="glyphicon glyphicon-minus"></span></span></td>
 									<td class="ctr">&nbsp;</td>
 									<td class="clock clock-btm"><span
 											id="start-minute-minus"
-											class="clock clock-btm glyphicon glyphicon-minus"></span></td>
+											class="clock clock-btm"><span class="glyphicon glyphicon-minus"></span></span></td>
 								</tr>
 							</table>
 						</div>
 					</div>
 					<div class="row">
-					<div class="col-xs-3"></div>
-					<div id="reset" class="col-xs-6 panel sm-panel panel-success panel-body center">reset</div>
-					<div class="col-xs-3"></div>
+					<div class="col-xs-4"></div>
+					<div id="reset" class="col-xs-3 panel sm-panel panel-success panel-body center">reset</div>
+					<div class="col-xs-5"></div>
 					</div>
 					<div class="wrap">
 						<div class="left">

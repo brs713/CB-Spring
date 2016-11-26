@@ -97,7 +97,10 @@
 </head>
 
 <body>
-	<nav th:fragment="nav">
+	<thblock th:fragment="header"> <header></header>
+	<nav>
+
+		<!-- 
 		<ul>
 			<li style="display: inline-block; padding-right: 20px"><a
 				href="signup.html" th:href="@{/signup}">signup</a></li>
@@ -122,17 +125,43 @@
 				style="display: inline-block; padding-right: 20px"><a
 				href="logout.html" th:href="@{/logout}">logout</a></li>
 
-			<!-- This didn't work.  This data would have to be put in every controller method.
+			This didn't work.  This data would have to be put in every controller method.
 		<li style="display: inline-block; padding-right: 20px">
 			<span th:replace="comm :: comm"></span>
 		</li>
- -->
+
 
 		</ul>
+ -->
+		<div class="container-fluid">
+			<div class="row">
+				<div class="cols-xs-4">
+				</div>
+				<div class="col-xs-4"></div>
+				<div class="cols-xs-4">
+					<div class="wrap-right">
+
+						<ul class="center nav navbar-nav navbar-right">
+							<li style="text-align: center"><a href="loc.html">climb</a></li>
+							<li><a href="newclimb.html"><span
+									class="glyphicon glyphicon-plus"></span></a></li>
+							<li><a href="comm.html"><span
+									class="glyphicon glyphicon-envelope"></span></a></li>
+							<li class="dropdown" style="margin-right: 50px"><a href="#"
+								class="dropdown-toggle" data-toggle="dropdown" role="button"><span
+									class="glyphicon glyphicon-user"></span><span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li><a href="profile.html">profile</a></li>
+									<li role="separator" class="divider"></li>
+									<li><a href="logout.html">logout</a></li>
+								</ul></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
 	</nav>
-
-
-
-	<div class="container-fluid"></div>
+	</thblock>
 </body>
 </html>

@@ -6,54 +6,121 @@
 
 <body>
 
-	<header class="jumbotron">
-		<h1>Log In</h1>
-	</header>
-	<nav th:replace="template :: nav"></nav>
+	<thblock th:replace="template :: header"></thblock>
 	
-	<hr/>
+	<hr />
 	<form method="post" style="display: inline-block">
-		<input name="username" value="Sarge" style="display: none"/>
-		<input name="password" value="fdsafdsa" style="display: none"/>
+		<input name="username" value="Sarge" style="display: none" /> <input
+			name="password" value="fdsafdsa" style="display: none" />
 		<button class="btn btn-default" type="submit">Sarge</button>
 	</form>
 	<form method="post" style="display: inline-block">
-		<input name="username" value="Luna" style="display: none"/>
-		<input name="password" value="luna" style="display: none"/>
+		<input name="username" value="Luna" style="display: none" /> <input
+			name="password" value="luna" style="display: none" />
 		<button class="btn btn-default" type="submit">Luna</button>
 	</form>
 	<form method="post" style="display: inline-block">
-		<input name="username" value="Siri" style="display: none"/>
-		<input name="password" value="mewl" style="display: none"/>
+		<input name="username" value="Siri" style="display: none" /> <input
+			name="password" value="mewl" style="display: none" />
 		<button class="btn btn-default" type="submit">Siri</button>
 	</form>
-	<hr/>
-	
+	<hr />
+
 	<form method="post">
-		
+
 		<h1>Log In</h1>
 		<br />
-		<div class="form-group"  th:class="${usrError}? 'has-error'">
-			<label for="name" class="control-label">Username:
-				
-				<input type="text" name="username" th:value="${name}" class="form-control" /></label>&nbsp;&nbsp;<span class="text-danger error" th:text="${usrError}"></span>
+		<div class="form-group" th:class="${usrError}? 'has-error'">
+			<label for="name" class="control-label">Username: <input
+				type="text" name="username" th:value="${name}" class="form-control" /></label>&nbsp;&nbsp;<span
+				class="text-danger error" th:text="${usrError}"></span>
 		</div>
-			<p class="text-warning info" th:text="${usrGuide}"></p>
+		<p class="text-warning info" th:text="${usrGuide}"></p>
 
-		<div class="form-group"  th:class="${pwdError}? 'has-error'">
-			<label for="name" class="control-label">Password:
-				
-				<input type="password" name="password" class="form-control" /></label>&nbsp;&nbsp;<span class="text-danger error" th:text="${pwdError}"></span>
+		<div class="form-group" th:class="${pwdError}? 'has-error'">
+			<label for="name" class="control-label">Password: <input
+				type="password" name="password" class="form-control" /></label>&nbsp;&nbsp;<span
+				class="text-danger error" th:text="${pwdError}"></span>
 		</div>
-			<p class="text-warning info" th:text="${pwdGuide}"></p><br />
+		<p class="text-warning info" th:text="${pwdGuide}"></p>
+		<br />
 
 		<button class="btn btn-primary" type="submit">Log In</button>
-		
-		<p>Don't have an account?  <a href="signup.html" th:href="@{/signup}">Get One</a>!</p>
-		
+
+		<p>
+			Don't have an account? <a href="signup.html" th:href="@{/signup}">Get
+				One</a>!
+		</p>
+
 
 	</form>
-	
 
+<!-- 	<div class="row">
+		<div class="col-sm-4"></div>
+		<div class="col-sm-4">
+			<div class="row">
+				<div id="carousel" class="carousel slide" data-ride="carousel"
+					data-interval="false">
+					Indicators
+					<ol class="carousel-indicators">
+						<li data-target="#carousel" data-slide-to="0" class="active"></li>
+						<li data-target="#carousel" data-slide-to="1"></li>
+						<li data-target="#carousel" data-slide-to="2"></li>
+					</ol>
+
+					Wrapper for slides
+					<div class="carousel-inner" role="listbox"
+						style="background-color: white">
+
+						<div class="item">
+							<div class="wrap">
+								<div class="center">
+									<a href="cal.html"><img src="/img/cal2_2.png" /></a>
+								</div>
+							</div>
+						</div>
+						<div class="item active">
+							<div class="wrap">
+								<div class="center">
+									<a href="loc.html"><img src="/img/loc2_1.png" /></a>
+								</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="wrap">
+								<div class="center">
+									<a href="ppl.html"><img src="/img/ppl2_3.png" /></a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					Controls
+					<a class="left carousel-control" href="#carousel" role="button"
+						data-slide="prev"> <img id="left-control" th:src="${leftImg}" />
+					</a> <a class="right carousel-control" href="#carousel" role="button"
+						data-slide="next"> <img id="right-control"
+						th:src="${rightImg}" />
+					</a>
+				</div>
+			</div>
+			<div class="row">
+				<div class="wrap">
+					<div id="carousel-output" class="center">Locations</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-4"></div>
+	</div>
+ -->
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<hr />
+	<br />
+	<br />
 </body>
 </html>

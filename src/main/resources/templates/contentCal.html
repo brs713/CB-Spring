@@ -2,13 +2,21 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <section th:fragment="contentCalDetail" th:if="${calContent}">
-
-
+<!-- 	<p class="locs" th:each="user : ${users}" th:text="${user.name}"></p> -->
+	<p class="climbs" th:each="climb : ${climbs}">
+		<span th:text="${climb.scheduledTime}"></span>&nbsp;&nbsp;&nbsp;
+	 	<span th:text="${climb.userInitiate.username}"></span></p>
+<!-- 	<p class="profiles" th:each="profile : ${profiles}" th:text="${loc}"></p> -->
 </section>
 
 <section th:fragment="contentCalMain" th:if="${calContent}">
-
-
+	<form method="post">
+	<div class="wrap">
+		<div class="right">
+			<div id="climb-calendar"></div>
+		</div>
+	</div>
+	</form>
 </section>
 
 </html>

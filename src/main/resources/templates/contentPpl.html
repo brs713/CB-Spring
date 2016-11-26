@@ -2,15 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <section th:fragment="contentPplDetail" th:if="${pplContent}">
-	<div th:each="profile : ${profiles}">
-		<!--  class="panel panel-success panel-body"> -->
-		<button id="${profile.name}">
-			<h4 th:text="${profile.name}"></h4>
-		</button>
-	</div>
-
-
-
+	
+	<p th:each="profile : ${profiles}" th:text="${profile.name}"></p>
 
 </section>
 
@@ -23,13 +16,12 @@
 		<thblock th:each="climb : ${climbs}">
 
 		<div th:if="${profile.user} == ${climb.userInitiate}">
-			<div class="panel panel-info panel-body"  style="display: inline-block;">
+			<div style="display: inline-block;">
 				<span th:text="${climb.scheduledTime}"></span>&nbsp;&nbsp;&nbsp;&nbsp;
 				<span th:text="${climb.location}"></span>&nbsp;&nbsp;&nbsp;&nbsp;
 				<!-- 	 	<span th:if="${climb.isAccepted}" th:text="${climb.isAccepted}"></span> -->
 			</div>
-			<button class="btn btn-info btn-lg" style="display: inline-block;"
-				disabled="disabled">Accept</button>
+			<button style="display: inline-block;" disabled="disabled">Accept</button>
 		</div>
 
 		<!-- 		

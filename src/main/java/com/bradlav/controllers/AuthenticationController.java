@@ -105,6 +105,9 @@ public class AuthenticationController extends AbstractController {
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginFormGet(HttpServletRequest request, Model model) {
 		
+//		model.addAttribute("leftImg", "/img/cal_black.png");
+//		model.addAttribute("rightImg", "/img/ppl_black.png");
+		
 		return "login";
 	}
 

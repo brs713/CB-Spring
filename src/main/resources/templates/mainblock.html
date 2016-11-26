@@ -5,75 +5,72 @@
 
 
 	<div class="container-fluid">
+
 		<div class="row">
-			<div id="titlebar" class="hidden-xs hidden-sm col-md-12"></div>
-		</div>
-		<div id="trio" class="row">
 			<div class="col-xs-4"></div>
 			<div class="col-xs-4">
-
-				<div class="col-xs-4 error trio">
-					<div>
-						<a href="cal.html" th:href="@{/cal}"><img id="cal-img"
-							src="/img/cal_black.png" th:attr="src=@{img/cal_black.png}" /></a>
+				<div class="row trio">
+					<div class="col-xs-4 wrap">
+						<div class="center">
+							<a href="cal.html"><img id="cal-img" src="/img/cal_black.png" /></a>
+						</div>
 					</div>
-					<div class="hidden-xs col-sm-4">Calendar</div>
-
-				</div>
-				<div class="col-xs-4">
-					<div>
-						<a href="loc.html" th:href="@{/loc}"><img id="loc-img"
-							src="/img/loc_black.png" th:attr="src=@{img/loc_black.png}" /></a>
+					<div class="col-xs-4 wrap">
+						<div class="center">
+							<a href="loc.html"><img id="loc-img" src="/img/loc_black.png" /></a>
+						</div>
 					</div>
-					<div class="hidden-xs col-sm-4">Location</div>
-				</div>
-				<div class="col-xs-4">
-					<div>
-						<a href="ppl.html" th:href="@{/ppl}"><img id="ppl-img"
-							src="/img/ppl_black.png" th:attr="src=@{img/ppl_black.png}" /></a>
+					<div class="col-xs-4 wrap">
+						<div class="center">
+							<a href="ppl.html"><img id="ppl-img" src="/img/ppl_black.png" /></a>
+						</div>
 					</div>
-					<div class="hidden-xs col-sm-4">Climbers</div>
 				</div>
-
-			</div>
-			<div class="col-xs-4"></div>
-		</div>
-
-		<div class="row panel panel-default">
-			<div id="detail" class="hidden-xs col-sm-3">
-<!-- 				<thblock th:replace="dtl :: detailContent"> </thblock> -->
-				<section th:replace="contentCal :: contentCalDetail"></section>
-
-				<section th:replace="contentLoc :: contentLocDetail"></section>
-
-				<section th:replace="contentPpl :: contentPplDetail"></section>
-
-			</div>
-			<div id="main" class="col-xs-12 col-sm-9">
-				<div id="main-detail"
-					class="col-xs-12 hidden-sm hidden-md hidden-lg">
-<!-- 					<thblock th:replace="dtl :: detailContent"> </thblock> -->
-
+<!-- 				<div class="row">
+					<div class="wrap">
+						<div id="carousel-output" class="center">Locations</div>
+					</div>
 				</div>
-				<section th:replace="contentCal :: contentCalMain"></section>
-
-				<section th:replace="contentLoc :: contentLocMain"></section>
-
-				<section th:replace="contentPpl :: contentPplMain"></section>
-
-
+ -->				</div>
+				<div class="col-xs-4"></div>
 			</div>
-		</div>
-		<div class="row">
-			<div id="request" align="center">
-				<button id="req_btn" type="button" class="btn btn-primary">Can
-					I Get A Catch?</button>
+
+
+			<div class="row">
+				<div id="detail" class="hidden-xs col-sm-3">
+					<!-- 				<thblock th:replace="dtl :: detailContent"> </thblock> -->
+					<section th:replace="contentCal :: contentCalDetail"></section>
+
+					<section th:replace="contentLoc :: contentLocDetail"></section>
+
+					<section th:replace="contentPpl :: contentPplDetail"></section>
+				</div>
+				<div id="main" class="col-xs-12 col-sm-9">
+				
+					<div id="main-detail"
+						class="col-xs-12 hidden-sm hidden-md hidden-lg">
+						<!-- 					<thblock th:replace="dtl :: detailContent"> </thblock> -->
+
+					</div>
+					<section th:replace="contentCal :: contentCalMain"></section>
+
+					<section th:replace="contentLoc :: contentLocMain"></section>
+
+					<section th:replace="contentPpl :: contentPplMain"></section>
+
+
+				
+				</div>
 			</div>
-		</div>
-	</div>
-
-
-
+<!--
+ 			<div class="row">
+				<div id="request" align="center">
+					<button id="req_btn" type="button" class="btn btn-primary">Can
+						I Get A Catch?</button>
+				</div>
+			</div>
+ -->
+ 		</div>
 </section>
 
 

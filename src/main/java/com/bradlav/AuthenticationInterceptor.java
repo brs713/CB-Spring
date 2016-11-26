@@ -28,7 +28,14 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
         		"/cal",
         		"/ppl",
         		"/comm",
-        		"/newclimb");
+        		"/newclimb",
+        		"/profile.html",
+        		"/loc.html",
+        		"/cal.html",
+        		"/ppl.html",
+        		"/comm.html",
+        		"/newclimb.html"
+        		);
 
         // Require sign-in for auth pages
         if ( authPages.contains(request.getRequestURI()) ) {

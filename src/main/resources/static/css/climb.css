@@ -1,12 +1,12 @@
 
 
-/*  ---  IDs  ---  */
+/***  ---  IDs  ---  ***/
 #new-climb-form {
 	margin-left: auto;
 	margin-right: auto;
 }
 
-#new-climb-cal {
+#new-climb-cal #climb-calendar{
 	margin-top: 15px;
 	stop-color: purple;
 	background-color: yellow;
@@ -36,16 +36,73 @@
 	background-color: grey;
 }
 
+#cal-link:hover
+#cal-text {
+	color: #eec212;
+/* 	border-bottom: 1px solid black; */
+}
+#cal-link:hover
+#cal-span {
+/* 	text-decoration: overline; */
+}
 
-/*  ---  CLASSES  ---  */
+#carousel-output {
+	border-radius: 10px;
+	background-color: #FAFAFA;
+	margin: 15px;
+	padding: 3px 20%;
+	color: #1F78D4;
+	border: 1px solid;
+}
+
+
+
+	
+/***  ---  CLASSES  ---  ***/
 
 .scrolloff {
     pointer-events: none;
 }
 
+.trio {
+	margin: 15px 0 30px 0;
+}
+
+.frame {
+	margin: 3px;
+	border: 1px solid #5e6960;
+}
+
+.carousel {
+	margin-top: 25px;
+	transition-duration: .2s;
+}
+
+/* .carousel-inner > .item {
+ position: relative;
+ display: none;
+ -webkit-transition: 0.4s ease-in-out left;
+ -moz-transition: 0.4s ease-in-out left;
+ -o-transition: 0.4s ease-in-out left;
+ transition: 0.4s ease-in-out left;
+}
+ */
+ 
+.trim {
+	margin: 0;
+	padding: 0;
+}
 
 .wrap {
 	text-align: center;
+}
+
+.wrap-left {
+	text-align: left;
+}
+
+.wrap-right {
+	text-align: right;
 }
 
 .center {
@@ -110,6 +167,17 @@
   color: green;
 }
 
+/* .carousel-control.left, .carousel-control.right {
+    background-image: none
+}
+ */
+
+
+
+.buffer {
+	padding: 3px 0;
+}
+
 .red {
 	border: 1px solid red;
 }
@@ -127,10 +195,65 @@
 }
 
 
+/***  ---  TAGS  ---  ***/
+
+header {
+	height: 50px;
+	background-color: #5e6960;
+}
+
+nav {
+	font-family: sans-serif;
+	margin: 3px 0;
+}
+
+
+a {
+	color: gray;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
 /*  ---  XS SCREEN ONLY STYLES  ---  */
 @media ( max-width : 768px) {
 
 	#map {
 		margin: auto;
 	}
+}
+
+
+
+
+
+
+/*  ---  Found this...what's it mean?  Do I need it? ---  */
+
+
+/****  FIRST ****/
+/* Custom, iPhone Retina */
+@media only screen and (min-width : 320px) {
+
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 480px) {
+
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+
 }

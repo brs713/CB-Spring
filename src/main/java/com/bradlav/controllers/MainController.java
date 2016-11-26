@@ -1,6 +1,9 @@
 package com.bradlav.controllers;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bradlav.models.ClimbSession;
+import com.bradlav.models.Communication;
 import com.bradlav.models.Profile;
 import com.bradlav.models.User;
 
@@ -23,6 +27,9 @@ public class MainController extends AbstractController {
 	@RequestMapping(value = "/cal", method = RequestMethod.GET)
     String calendarGet(HttpServletRequest request, Model model){
 
+//		model.addAttribute("leftImg", "/img/ppl_black.png");
+//		model.addAttribute("rightImg", "/img/loc_black.png");
+		
 		// get this session's user
 		HttpSession thisSession = request.getSession();
 		User user = getUserFromSession(thisSession);
@@ -49,11 +56,49 @@ public class MainController extends AbstractController {
 	@RequestMapping(value = "/cal", method = RequestMethod.POST)
 	String calendarPost(HttpServletRequest request, Model model) {
 
+//		model.addAttribute("leftImg", "/img/ppl_black.png");
+//		model.addAttribute("rightImg", "/img/loc_black.png");
+		
 		// get this session's user
 		HttpSession thisSession = request.getSession();
 		User user = getUserFromSession(thisSession);
-		model.addAttribute("user_logged", user.getUsername());
+		model.addAttribute("user_logged", user.getUsername());		
+		
+//		{date-hidden}{3:15pm}:  {Siri}   with   {Sarge}   at   {SoIll}		
+//		{date-hidden}{3:15pm}:  {Luna}   wants to climb at   {Upper Limits}  -  {Accept btn}
+		
+		List<ClimbSession> climbs = new ArrayList<ClimbSession>();
+		
 
+/* chunk of sample from communication
+ 		String m = "";
+ 		for (Communication comm : comms) {
+ 			String person = profileDao.findByUser(comm.getFromUser()).getName();
+ 			String place = comm.getClimb().getLocation();
+ 			String ampm = (c.get(Calendar.AM_PM)) == 0 ? "am" : "pm";
+
+ 			m += "<p>" + person + " agreed to climb with you at "
+ 					+ place + " on " 
+ 					+ beginning.format(t) + " at " 
+ 					+ middle.format(t) + " " 
+ 					+ ampm + "</p>";
+ 		}
+
+*/
+
+//Assemble:
+		//Month & Day
+		
+		
+		//Time
+		
+
+		//User Initiate
+		
+		
+		//User Acceptor
+		
+		
        return "cal";
     }
 
@@ -63,6 +108,9 @@ public class MainController extends AbstractController {
 	@RequestMapping(value = "/loc", method = RequestMethod.GET)
     String locationsGet(HttpServletRequest request, Model model){
 
+//		model.addAttribute("leftImg", "/img/cal_black.png");
+//		model.addAttribute("rightImg", "/img/ppl_black.png");
+		
 		// get this session's user
 		HttpSession thisSession = request.getSession();
 		User user = getUserFromSession(thisSession);
@@ -98,6 +146,9 @@ public class MainController extends AbstractController {
 	@RequestMapping(value = "/loc", method = RequestMethod.POST)
 	String locationsPost(HttpServletRequest request, Model model) {
 
+//		model.addAttribute("leftImg", "/img/cal_black.png");
+//		model.addAttribute("rightImg", "/img/ppl_black.png");
+
 		// get this session's user
 		HttpSession thisSession = request.getSession();
 		User user = getUserFromSession(thisSession);
@@ -111,6 +162,10 @@ public class MainController extends AbstractController {
 	@RequestMapping(value = "/ppl", method = RequestMethod.GET)
     String peopleGet(HttpServletRequest request, Model model){
 
+//		model.addAttribute("leftImg", "/img/loc_black.png");
+//		model.addAttribute("rightImg", "/img/cal_black.png");
+
+		
 		//displays a list of people in main & their climbing sessions in detail(order by next unfilled climbSession?)
 				
 		// get this session's user
@@ -137,6 +192,9 @@ public class MainController extends AbstractController {
     }
 	@RequestMapping(value = "/ppl", method = RequestMethod.POST)
 	String peoplePost(HttpServletRequest request, Model model) {
+
+//		model.addAttribute("leftImg", "/img/loc_black.png");
+//		model.addAttribute("rightImg", "/img/cal_black.png");
 
 		// get this session's user
 		HttpSession thisSession = request.getSession();
