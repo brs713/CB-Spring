@@ -9,7 +9,7 @@
 
 	<thblock th:replace="template :: header"></thblock>
 
-	<form method="post">
+
 
 		<h1>New Climbing Session</h1>
 
@@ -69,11 +69,9 @@
 
 		<button class="btn btn-primary" type="submit">Submit Request</button>
  -->
-	</form>
+
 
 	<form id="new-climb-form" method="post">
-
-
 		<div class="row">
 		<div class="col-sm-1"></div>
 		<div class="row col-sm-8">
@@ -81,8 +79,8 @@
 			<div class="wrap">
 				<div class="center">
 
-					Crags: <select name="location">
-						<option th:each="loc : ${locs}" th:text="${loc}" />
+					Crags: <select name="loc">
+						<option th:each="location : ${locs}" th:text="${location}" />
 					</select>
 				</div>
 			</div>
@@ -92,6 +90,7 @@
 				<div class="wrap">
 					<div class="right">
 						<div id="new-climb-cal"></div>
+						<input type="text" id="required-to-display-calendar" name="start-date" style="display: none"/>
 					</div>
 				</div>
 			</div>
@@ -113,13 +112,13 @@
 								</tr>
 								<tr>
 									<td class="clock clock-mid"><input id="start-hour" class="clock clock-mid"
-										name="start-hour" disabled="disabled"
+										name="start-hour" readonly="readonly"
 										th:value="${startHour} ? ${startHour} : '12'"></input></td>
 									<td class="ctr">&nbsp;:&nbsp;</td>
 									<td class="clock clock-mid"><input id="start-minute" class="clock clock-mid"
-										name="start-minute" disabled="disabled"
+										name="start-minute" readonly="readonly"
 										th:value="${startMinute} ? ${startMinute} : '00'"></input></td>
-									<td id="ampm" class="ctr">pm</td>
+									<td class="ctr"><input id="ampm" class="clock clock-mid" name="ampm" readonly="readonly" th:value="${ampm} ? ${ampm} : 'pm'"/></td>
 								</tr>
 								<tr>
 									<td class="clock clock-btm"><span id="start-hour-minus"
@@ -151,11 +150,11 @@
 									</tr>
 									<tr>
 										<td class="clock clock-mid"><input id="dur-hour"
-											class="clock clock-mid" name="dur-hour" disabled="disabled"
+											class="clock clock-mid" name="dur-hour" readonly="readonly"
 											th:value="${durHour} ? ${durHour} : '1'"></input></td>
 										<td class="ctr-dur">&nbsp;hr</td>
 										<td class="clock clock-mid"><input id="dur-minute"
-											class="clock clock-mid" name="dur-minute" disabled="disabled"
+											class="clock clock-mid" name="dur-minute" readonly="readonly"
 											th:value="${durMinute} ? ${durMinute} : '30'"></input></td>
 										<td class="ctr-dur">&nbsp;min</td>
 									</tr>

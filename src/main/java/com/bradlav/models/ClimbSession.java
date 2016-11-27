@@ -1,6 +1,8 @@
 package com.bradlav.models;
 
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -8,7 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-
 
 
 @Entity
@@ -21,7 +22,13 @@ public class ClimbSession extends AbstractEntity {
 	private Date scheduledTime;
 	private Date endTime;
 	private boolean isAccepted;
-	
+	SimpleDateFormat month = new SimpleDateFormat("MM");
+	SimpleDateFormat date = new SimpleDateFormat("d");
+	SimpleDateFormat day = new SimpleDateFormat("E");
+	SimpleDateFormat hour = new SimpleDateFormat("h");
+	SimpleDateFormat minute = new SimpleDateFormat("mm");
+	Calendar c = Calendar.getInstance();
+	String ampm;
 
 	public ClimbSession(User userInitiate, User userAcceptor, String location, Date scheduledTime, Date endTime,
 			boolean isAccepted) {
@@ -93,7 +100,7 @@ public class ClimbSession extends AbstractEntity {
 	public void setAccepted(boolean isAccepted) {
 		this.isAccepted = isAccepted;
 	}
-
+	
 }
 
 

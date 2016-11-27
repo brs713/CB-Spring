@@ -218,7 +218,6 @@ public class UserController extends AbstractController {
 
  		String m = "";
  		for (Communication comm : comms) {
-// 			String[] days = new DateFormatSymbols().getShortWeekdays();
  			SimpleDateFormat beginning = new SimpleDateFormat(" E,  MM-d ");
  			SimpleDateFormat middle  = new SimpleDateFormat(" h:mm");
  			Calendar c = Calendar.getInstance();
@@ -227,7 +226,6 @@ public class UserController extends AbstractController {
 
  			String person = profileDao.findByUser(comm.getFromUser()).getName();
  			String place = comm.getClimb().getLocation();
-// 			String weekday = days[c.get(Calendar.DAY_OF_WEEK)];
  			String ampm = (c.get(Calendar.AM_PM)) == 0 ? "am" : "pm";
 
  			m += "<p>" + person + " agreed to climb with you at "

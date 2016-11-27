@@ -106,7 +106,6 @@ $(document).ready(function() {
 
 
 	let path = $(location).attr('pathname');
-	console.log(path);
 
 	if (path === "/loc.html") {
 		$('#loc-img').attr('src', '/img/loc2_1.png');
@@ -125,23 +124,40 @@ $(document).ready(function() {
 		$('#carousel-output').text("People")
 		.prop('border-color', '#A1663A;')
 		.css('color', '#A1663A');
+		addClickEvents();
 	}
 
 	
 	
 	// CLIMB CALENDAR CONTROL
+	let calendarDate;
 	$('#climb-calendar').datepicker({
+		monthNamesShort: true,
+		dateFormat: "yy-mm-dd",
+		onSelect: function(calendarDate, obj){
+			startDate = calendarDate==="" ? this.defaultDate : calendarDate;
+	        $('#cal-input').val(calendarDate);
+		}
 	});
-
 
 
 	// NEW CLIMB CALENDAR CONTROL
 	let now = new Date();
+	let startDate;
 	$('#new-climb-cal').datepicker({
 		minDate: now,
-		defaultDate: +1
+		defaultDate: +1,
+		monthNamesShort: true,
+		dateFormat: "yy-mm-dd",
+		onSelect: function(startDate, obj){
+			startDate = startDate==="" ? this.defaultDate : startDate;
+	        $('#required-to-display-calendar').val(startDate);
+		}
 	});
-	console.log($('#new-climb-cal'));
+	let pageLoadDate = $('#new-climb-cal').datepicker("getDate");
+	let dateFormatted = new Date(pageLoadDate);
+	dateFormatted = $.datepicker.formatDate("yy-mm-dd", dateFormatted);
+	$('#required-to-display-calendar').val(dateFormatted);	
 
 
 	// NEW CLIMB HOUR CONTROLS
@@ -170,7 +186,7 @@ $(document).ready(function() {
 		startMinute.val("00");
 		durHour.val(1);
 		durMinute.val(30);
-		$('#ampm').text('pm');
+		$('#ampm').val('pm');
 	});
 
 	$('#start-hour-plus').click(function() {
@@ -180,7 +196,7 @@ $(document).ready(function() {
 		}
 		startHour.val(newHour);
 		if (newHour == 12) {
-			$('#ampm').text(($('#ampm').text() == 'pm') ? 'am' : 'pm');
+			$('#ampm').val(($('#ampm').val() == 'pm') ? 'am' : 'pm');
 		}
 
 	});
@@ -191,7 +207,7 @@ $(document).ready(function() {
 		} 
 		startHour.val(newHour);
 		if (newHour == 11) {
-			$('#ampm').text(($('#ampm').text() == 'pm') ? 'am' : 'pm');
+			$('#ampm').val(($('#ampm').val() == 'pm') ? 'am' : 'pm');
 		}
 
 	});    
@@ -234,6 +250,19 @@ $(document).ready(function() {
 		}
 		durMinute.val((newMinute == 0) ? '00' : newMinute);
 	});
+	
+	
+	// PPL CONTENT
+	
+/*	$('#ppl-detail').find().click(function(){
+		console.log("this works...somehow...   YAY!");
+	});
+	$('#Siri-detail').click(function(){
+		$('#ppl-main').find().css('display', 'none');
+		$('#Siri-main').css('display', 'block');
+	});*/
+	
+//	if location url === /ppl or /ppl.html
 
 
 	// DISABLE MAP SCROLL ON LOAD, TOGGLE ON CLICK
@@ -249,5 +278,39 @@ $(document).ready(function() {
 	});
 
 });
+	
 
-
+	let addClickEvents = function(){
+		console.log("made it");
+		console.log("what I want is:", $('#main').find('.ppl-content'));
+		$('.ppl-content').attr('hidden', true);
+		let mainContent = $('#main').find('.ppl-content');
+		console.log("mainContent is:", mainContent);
+		$.each(mainContent, function(){
+			console.log('each');
+			console.log($(this), $(this).attr('id'));
+		})
+		let alsoMainContent = $('.ppl-content');
+		console.log("alsoMainContent is:", alsoMainContent);
+	
+//	store all children of the main div as an object (variable)
+		let users = $('#ppl-detail').find('button');
+//		console.log(users);
+//	for each child of variable
+//		users.each(function(){
+		$.each(users, function(){
+//			get it's id 
+			 	let id = $(this).attr('id');
+//			 	console.log("id is: ", id);
+//			get it's name
+//				name = id - "#" "-detail"
+				let name = id.substring(0, id.length-7);
+//				console.log("name is: ", name);
+//			add click function
+			$(this).click(function(){
+				$('.ppl-content').attr('hidden', true);
+				console.log("$('#' + name + '-main') is: ", $('#' + name + '-main'));
+				$('#' + name + '-main').attr('hidden', false);
+			});
+		});
+	}	

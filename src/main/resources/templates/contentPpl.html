@@ -2,38 +2,40 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <section th:fragment="contentPplDetail" th:if="${pplContent}">
-	
-	<p th:each="profile : ${profiles}" th:text="${profile.name}"></p>
-
+	<div id="ppl-detail">
+		<button th:each="prof : ${profiles}" th:text="${prof.name}"
+			th:id="${prof.name} + '-detail'"></button>
+	</div>
 </section>
 
 <section th:fragment="contentPplMain" th:if="${pplContent}">
 
 	<div th:each="profile : ${profiles}">
-		<!--  class="panel panel-success panel-body"> -->
-		<h4 th:text="${profile.name}"></h4>
-
-		<thblock th:each="climb : ${climbs}">
-
-		<div th:if="${profile.user} == ${climb.userInitiate}">
-			<div style="display: inline-block;">
-				<span th:text="${climb.scheduledTime}"></span>&nbsp;&nbsp;&nbsp;&nbsp;
-				<span th:text="${climb.location}"></span>&nbsp;&nbsp;&nbsp;&nbsp;
-				<!-- 	 	<span th:if="${climb.isAccepted}" th:text="${climb.isAccepted}"></span> -->
-			</div>
-			<button style="display: inline-block;" disabled="disabled">Accept</button>
+		<div th:id="${profile.name} + '-main'" class="ppl-content">
+			<div th:text="${profile.name}"></div>
+			<!-- 			<div th:text="${profile.pic}"></div> -->
+			<div
+				th:text="(${profile.homeGym} != -1) ? ${profile.homeGym} : 'nuthin'"></div>
+			<div
+				th:text="(${profile.leadPracticeMin} != -1) ? ${profile.leadPracticeMin} : 'nuthin'"></div>
+			<div
+				th:text="(${profile.leadPracticeMax} != -1) ? ${profile.leadPracticeMax} : 'nuthin'"></div>
+			<div
+				th:text="(${profile.topropePracticeMin} != -1) ? ${profile.topropePracticeMin} : 'nuthin'"></div>
+			<div
+				th:text="(${profile.topropePracticeMax} != -1) ? ${profile.topropePracticeMax} : 'nuthin'"></div>
+			<div
+				th:text="(${profile.boulderPracticeMin} != -1) ? ${profile.boulderPracticeMin} : 'nuthin'"></div>
+			<div
+				th:text="(${profile.boulderPracticeMax} != -1) ? ${profile.boulderPracticeMax} : 'nuthin'"></div>
+			<!-- 			<div th:text="${profile.leadPracticeMin}"></div>
+			<div th:text="${profile.leadPracticeMax}"></div>
+			<div th:text="${profile.topropePracticeMin}"></div>
+			<div th:text="${profile.topropePracticeMax}"></div>
+			<div th:text="${profile.boulderPracticeMin}"></div>
+			<div th:text="${profile.boulderPracticeMax}"></div>
+ -->
 		</div>
-
-		<!-- 		
-		<div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search">
-                    <div class="input-group-btn">
-                        <button class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></button>
-                        <button class="btn btn-primary"><i class="glyphicon glyphicon-wrench"></i></button>
-                    </div>
-                </div>
- --> </thblock>
-
 
 	</div>
 

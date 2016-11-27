@@ -1,7 +1,10 @@
 package com.bradlav.controllers;
 
-import java.util.Calendar;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -38,6 +41,16 @@ public class ClimbController extends AbstractController {
 		User user = getUserFromSession(thisSession);
 		model.addAttribute("user_logged", user.getUsername());
 
+		
+		// need to create a list of locations
+		List<ClimbSession> climbs = climbDao.findAll();
+		List<String> locs = new ArrayList<String>();
+		for (ClimbSession climb : climbs) {
+			if (!(locs.contains(climb.getLocation()))) {
+				locs.add(climb.getLocation());
+			}
+		}
+		model.addAttribute("locs", locs);
 //		Date now = new Date();
 // 		System.out.println("\n\nnow is " + now + "\n\n");
 //		now is Thu Nov 17 14:14:09 CST 2016
@@ -47,7 +60,7 @@ public class ClimbController extends AbstractController {
 	
 
 	@RequestMapping(value = "/newclimb", method = RequestMethod.POST)
-	String newclimbPost(HttpServletRequest request, Model model) {
+	String newclimbPost(HttpServletRequest request, Model model) throws ParseException {
 
 		// get this session's user
 		HttpSession thisSession = request.getSession();
@@ -57,99 +70,57 @@ public class ClimbController extends AbstractController {
 		// errors
 		String locError = "Invalid location.";
 		//String locGuide = "";
-		String whenError = "Invalid date.";
-		//String[] whenGuide = {};
-		//String durationError = "Invalid duration.";
-		//String durationGuide = "";
-		String empty = "cannot be empty";
+//		String whenError = "Invalid date.";
+//		//String[] whenGuide = {};
+//		//String durationError = "Invalid duration.";
+//		//String durationGuide = "";
+//		String empty = "cannot be empty";
 
+		SimpleDateFormat datepickerFormat = new SimpleDateFormat("yyyy-MM-dd");
+		
+		
 		// get data
+//		String month = request.getParameter("month");
+//		String day = request.getParameter("day");
+//		String hour = request.getParameter("hour");
+//		String minute = request.getParameter("minute");
+//		String duration = request.getParameter("duration");
 		String loc = request.getParameter("loc");
-		String month = request.getParameter("month");
-		String day = request.getParameter("day");
-		String hour = request.getParameter("hour");
-		String minute = request.getParameter("minute");
-		String duration = request.getParameter("duration");
-
+		String startDate = request.getParameter("start-date");
+		String startHour = request.getParameter("start-hour");
+		String startMinute = request.getParameter("start-minute");
+		String ampm = request.getParameter("ampm");
+		String durHour = request.getParameter("dur-hour");
+		String durMinute = request.getParameter("dur-minute");
+		
+		// save user data in case of error
+		model.addAttribute("loc", loc);
+		model.addAttribute("start-date", loc);
+		model.addAttribute("start-hour", startHour);
+		model.addAttribute("start-minute", startMinute);
+		model.addAttribute("ampm", ampm);
+		model.addAttribute("dur-hour", "durHour");
+		model.addAttribute("dur-minute", "durMinute");
+		
+		System.out.println("\n\n\tstartDate(String) is " + startDate);
+		System.out.println(startHour +":"+ startMinute + " " + ampm);
+		System.out.println(durHour +":"+ durMinute);
+		System.out.println("location:  " + loc);  //null
 		
 		// validate
 		boolean hasError = false;
 
-		if (loc == "") {
-			System.out.println("\n\nEmpty String\n\n");
-			model.addAttribute("locError", locError);
-			hasError = true;
-		}
 		
-		if (loc == "") {
-			System.out.println("\n\null\n\n");
+		if (loc == null) {
+			System.out.println("\n\t\t\tnull\n\n");
 			model.addAttribute("locError", locError);
-			hasError = true;
-		}
-		if (month == "") {
-			model.addAttribute("monthError", empty);
-			hasError = true;
-		}
-		if (day == "") {
-			model.addAttribute("dayError", empty);
-			hasError = true;
-		}
-		if (hour == "") {
-			model.addAttribute("hourError", empty);
-			hasError = true;
-		}
-		if (minute == "") {
-			model.addAttribute("minuteError", empty);
 			hasError = true;
 		}
 
-		//FAILS ON NON-NUMERIC VALUES, BUT THIS WILL ALL BE STRIPPED ANYWAY
-		//JUST NEED A WAY TO GET DATA TO THE DB FOR NOW.
-		
-		if (month != "" && (Integer.parseInt(month) < 1 || Integer.parseInt(month) > 12)) {
-			model.addAttribute("monthError", whenError);
-			//model.addAttribute("whenGuide", whenGuide[0]);
-			hasError = true;
-		}		
-		if (day != "" && (Integer.parseInt(day) < 1 || Integer.parseInt(day) > 31)) {
-			model.addAttribute("dayError", whenError);
-			//model.addAttribute("whenGuide", whenGuide[1]);
-			hasError = true;
-		}
-		if (hour != "" && (Integer.parseInt(hour) < 0 || Integer.parseInt(hour) > 24)) {
-			model.addAttribute("hourError", whenError);
-			//model.addAttribute("whenGuide", whenGuide[2]);
-			hasError = true;
-		}
-		if (minute != "" && (Integer.parseInt(minute) < 0 || Integer.parseInt(minute) > 60)) {
-			model.addAttribute("minuteError", whenError);
-			//model.addAttribute("whenGuide", whenGuide[3]);
-			hasError = true;
-		}
-		
 
 		// error path
 		if (hasError) {
 			
-			// save user's data
-			if (loc != "") {
-				model.addAttribute("loc", loc);
-			}
-			if (month != "") {
-				model.addAttribute("month", month);
-			}
-			if (day != "") {
-				model.addAttribute("day", day);
-			}
-			if (hour != "") {
-				model.addAttribute("hour", hour);
-			}
-			if (minute != "") {
-				model.addAttribute("minute", minute);
-			}
-			if (duration != "") {
-				model.addAttribute("duration", duration);
-			}
 			// retry
 			return "newclimb";
 		}
@@ -164,24 +135,55 @@ public class ClimbController extends AbstractController {
  		Date endsWhen = now;
  		
  		// process data to store values in new variables
- 		Calendar c = Calendar.getInstance();
- 		c.clear();
- 		c.set(Calendar.DAY_OF_MONTH, Integer.parseInt(day));
- 		c.set(Calendar.MONTH, Integer.parseInt(month) - 1);
- 		c.set(Calendar.YEAR, YEAR);
- 		startsWhen = c.getTime();
- 		long startsWhenLong = startsWhen.getTime() 
- 				+ (Long.parseLong(hour) * HOUR)
- 				+ (Long.parseLong(minute) * MINUTE);
+ 		
+ 		
+ 		long duration = (Long.parseLong(durHour) * 60) + Long.parseLong(durMinute);   
+// 		Calendar c = Calendar.getInstance();
+// 		c.clear();
+// 		c.set(Calendar.DAY_OF_MONTH, Integer.parseInt(day));
+// 		c.set(Calendar.MONTH, Integer.parseInt(month) - 1);
+// 		c.set(Calendar.YEAR, YEAR);
+ 		Date date = datepickerFormat.parse(startDate);
+ 		System.out.println("date is (startDate parsed):" + date);
+ 		try {
+	 		startsWhen = datepickerFormat.parse(startDate);
+	 		System.out.println("in try startDate: " + startDate);
+	 		System.out.println("in try startsWhen: " + startsWhen);
+ 		} catch (Exception e){
+ 			System.out.println("\n\n***this is an exception: " + e);
+ 		};
+ //		startsWhen = c.getTime();
+ 		long startHourLong = Long.parseLong(startHour);
+ 		if (ampm.equals("pm")) {
+ 			System.out.println("in ampm, sHL = " + startHourLong);
+ 			if (startHourLong != 12) {
+	 			startHourLong += 12;
+	 			System.out.println("ending ampm, sHL = " + startHourLong);
+ 			}
+ 		}
+ 		System.out.println("outta if ampm loop");
+ 		
+ 		
+ 		long startsWhenLong = startsWhen.getTime()
+ 				+ (startHourLong * HOUR)
+ 				+ (Long.parseLong(startMinute) * MINUTE);
+ 		System.out.println("StartsWhenLong: " + startsWhenLong
+ 				+ "\nstartsWhen : " + startsWhen.getTime()
+ 				+ "\nstartHour * HOUR: " + (startHourLong * HOUR)
+ 				+ "\nstartMinute * MINUTE: " + (Long.parseLong(startMinute) * MINUTE));
+
+ 		
  		startsWhen = new Date(startsWhenLong);
+ 		System.out.println("in try : " + startDate);
+ 		
  		
  		System.out.println("\n\nstartsWhen is " + startsWhen + "\n\n"); 		
  		
- 		if (duration != "") {
- 			long t= startsWhen.getTime();
- 			endsWhen = new Date(t + (Long.parseLong(duration) * MINUTE));
- 			climb.setEndTime(endsWhen);
- 		}
+ 		long t= startsWhen.getTime();
+ 		endsWhen = new Date(t + (duration * MINUTE));
+ 		climb.setEndTime(endsWhen);
+
+
  		
  		// if not null, set variable in new object
  		climb.setUserInitiate(user);

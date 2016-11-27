@@ -2,11 +2,74 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <section th:fragment="contentCalDetail" th:if="${calContent}">
-<!-- 	<p class="locs" th:each="user : ${users}" th:text="${user.name}"></p> -->
+	<form method="post">
+		<div class="wrap">
+			<div class="center">
+				<div id="climb-calendar"></div>
+				<input type="text" id="cal-input" name="selected-date" style="display: none"/>
+				
+			</div>
+		</div>
+	</form>
+</section>
+
+<section th:fragment="contentCalMain" th:if="${calContent}">
+
+	<div th:each="climb : ${climbs}">
+		<div class="row">
+			<div class="col-xs-2">
+				<span>requested by:</span>
+			</div>
+			<div class="col-xs-4">
+				<span th:text="${climb.userInitiate.username}"></span>
+			</div>
+			<div class="col-xs-6"></div>
+		</div>
+		<div class="row">
+			<div class="col-xs-1">
+				<div class="row">
+					<span th:text="${climb.startMonth}"></span>
+				</div>
+				<div class="row">
+					<span th:text="${climb.startDate}"></span>
+				</div>
+			</div>
+			<div class="col-xs-2">
+				<span th:text="${climb.startDay}"></span>
+			</div>
+			<div class="col-xs-1">
+				<span th:text="${climb.startHour}"></span>
+			</div>
+			<div class="col-xs-1">
+				<div class="row">
+					<span th:text="${climb.startMinute}"></span>
+				</div>
+				<div class="row">
+					<span th:text="${climb.startAmpm}"></span>
+				</div>
+			</div>
+			<div class="col-xs-6">
+				<span th:text="${climb.location}"></span>
+			</div>
+			<div class="col-xs-1">
+				<span class="glyphicon glyphicon-triangle-bottom"></span>
+			</div>
+		</div>
+	</div>
+
+
+</section>
+
+
+
+
+<!-- OLD VERSION
+<section th:fragment="contentCalDetail" th:if="${calContent}">
+	<p class="locs" th:each="user : ${users}" th:text="${user.name}"></p>
 	<p class="climbs" th:each="climb : ${climbs}">
 		<span th:text="${climb.scheduledTime}"></span>&nbsp;&nbsp;&nbsp;
 	 	<span th:text="${climb.userInitiate.username}"></span></p>
-<!-- 	<p class="profiles" th:each="profile : ${profiles}" th:text="${loc}"></p> -->
+	<p class="profiles" th:each="profile : ${profiles}" th:text="${loc}"></p>
 </section>
 
 <section th:fragment="contentCalMain" th:if="${calContent}">
@@ -19,6 +82,7 @@
 	</form>
 </section>
 
+ -->
 </html>
 
 
