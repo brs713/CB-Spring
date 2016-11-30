@@ -29,12 +29,14 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
         		"/ppl",
         		"/comm",
         		"/newclimb",
+        		"/search-climbs",
         		"/profile.html",
         		"/loc.html",
         		"/cal.html",
         		"/ppl.html",
         		"/comm.html",
-        		"/newclimb.html"
+        		"/newclimb.html",
+        		"/search-climbs.html"
         		);
 
         // Require sign-in for auth pages

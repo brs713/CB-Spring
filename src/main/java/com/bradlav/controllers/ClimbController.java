@@ -198,7 +198,7 @@ public class ClimbController extends AbstractController {
 		climbDao.save(climb);
 		
 		// redirect
-		return "redirect:loc";
+		return "redirect:/";
 		
     }
 	

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="template :: htmlhead">
+
+</head>
+
+<body>
+
+	<thblock th:replace="template :: header"></thblock>
+
+
+	<div class="container">
+
+		<div class="row">
+			<div class="col-xs-2">
+				<a href="ppl">profiles</a><br /> <a href="loc">locations</a>
+			</div>
+			<div class="col-xs-1"></div>
+			<div class="col-xs-7">
+				<!-- 
+
+
+<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button">
+	<span class="glyphicon glyphicon-user"></span>
+	<span class="caret"></span>
+</a>
+<ul id="nav-person-dropdown" class="dropdown-menu"
+	style="right: 0">
+	<li><a href="profile.html">profile</a></li>
+	<li role="separator" class="divider"></li>
+	<li><a href="logout.html">logout</a></li>
+</ul>
+
+
+ -->
+				<div class="row">
+					<div class="col-xs-3 filter">
+						<span class="dropdown"> <a href="#" id="date-filter"
+							class="dropdown-toggle filter" data-toggle="dropdown"
+							role="button"> <span class="hidden-xs">Date</span> <span
+								class="hidden-sm hidden-md hidden-lg glyphicon glyphicon-calendar"></span>
+								<span class="caret filter-caret"></span>
+						</a>
+							<form class="dropdown-menu">
+								<div id="climb-calendar"></div>
+								<input type="text" id="cal-input" name="selected-date"
+									style="display: none" />
+							</form>
+						</span>
+					</div>
+					<div class="col-xs-3 filter">
+						<span class="dropdown"> <a href="#"
+							class="dropdown-toggle filter" data-toggle="dropdown"
+							role="button"> <span class="hidden-xs">Location</span> <span
+								class="hidden-sm hidden-md hidden-lg glyphicon glyphicon-map-marker"></span>
+								<span class="caret filter-caret"></span>
+						</a>
+							<ul class="dropdown-menu filter-drop">
+								<li th:each="loc : ${locs}" th:text="${loc}"></li>
+							</ul>
+						</span>
+					</div>
+					<div class="col-xs-3 filter">
+						<span class="dropdown"> <a href="#"
+							class="dropdown-toggle filter" data-toggle="dropdown"
+							role="button"> <span class="hidden-xs">Person</span> <span
+								class="hidden-sm hidden-md hidden-lg glyphicon glyphicon-thumbs-up"></span>
+								<span class="caret filter-caret"></span>
+						</a>
+							<ul class="dropdown-menu filter-drop">
+								<li th:each="profile : ${profiles}"
+									th:text="${profile.user.username}"></li>
+							</ul>
+						</span>
+					</div>
+					<div class="col-xs-3 filter">
+						<span class="dropdown"> <a href="#"
+							class="dropdown-toggle filter" data-toggle="dropdown"
+							role="button"> <span class="hidden-xs">Availability</span> <span
+								class="hidden-sm hidden-md hidden-lg glyphicon glyphicon-unchecked"></span>
+								<span class="caret filter-caret"></span>
+						</a>
+							<ul class="dropdown-menu filter-drop">
+								<li>Available Requests</li>
+								<li>Unavailable Requests</li>
+								<li>All Requests</li>
+							</ul>
+						</span>
+					</div>
+				</div>
+
+				<div class="row">
+
+					<div class="col-xs-12">
+
+						<div id="no-climbs">No Climbs Available For Selected
+							Criteria.</div>
+						<div th:each="climb : ${climbs}" class="climblist-item">
+							<div class="row climblist-toprow">
+								<div class="col-xs-2 climblist-item-requested-by">
+									<span class="middle">requested
+										by:&nbsp;&nbsp;&nbsp;&nbsp;</span> <span class="climblist-item-id"
+										th:text="${climb.climb.getId()}" style="display: none"></span>
+									<span class="climblist-item-userAcceptor"
+										th:text="(${climb.climb.getUserAcceptor()} == null) ? 'available' : ${climb.climb.getUserAcceptor().getUsername()}"
+										style="display: none"></span> <span
+										class="climblist-item-isAccepted"
+										th:text="${climb.climb.isAccepted()}" style="display: none"></span>
+								</div>
+								<div class="col-xs-4 climblist-item-name">
+									<span th:text="${climb.userInitiate.username}"></span>
+								</div>
+								<div class="col-xs-6">
+									<span th:text="${climb.climb.isAccepted()}"></span>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-1 climblist-item-date">
+
+									<span class="climblist-item-date-month"
+										th:text="${climb.startMonth}"></span> <br /> <span
+										class="climblist-item-date-date" th:text="${climb.startDate}"></span>
+
+								</div>
+								<div class="col-xs-2 climblist-item-day">
+									<span class="middle" th:text="${climb.startDay}"></span>
+								</div>
+								<div class="col-xs-1 climblist-item-hour">
+									<span class="middle" th:text="${climb.startHour}"></span>
+								</div>
+								<div class="col-xs-1 climblist-item-timeend">
+
+									<span class="climblist-item-timeend-minute"
+										th:text="${climb.startMinute}"></span> <br /> <span
+										class="climblist-item-timeend-ampm"
+										th:text="${climb.startAmpm}"></span>
+								</div>
+								<div class="col-xs-6 climblist-item-location">
+									<span class="middle" th:text="${climb.location}"></span>
+								</div>
+								<div class="col-xs-1 climblist-item-caret">
+									<form method="post">
+										<input type="text" name="climbId" th:value="${climb.climb.getId()}" style="display: none" />
+										<input type="text" name="isAccepted" value="true" style="display: none" />
+										<button type="submit" style="border: inherit; background-color: inherit;" th:disabled="(${climb.climb.isAccepted()} == true) ? 'disabled'">
+											<span class="glyphicon glyphicon-triangle-bottom" th:style="(${climb.climb.isAccepted()} == true) ? 'color: #eeeeee' : 'color: #ff8000'"></span>
+										</button>
+									</form>
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+
+				</div>
+
+
+			</div>
+			<div class="col-xs-2"></div>
+		</div>
+
+	</div>
+
+</body>
+
+
+</html>

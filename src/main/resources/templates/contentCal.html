@@ -2,11 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <section th:fragment="contentCalDetail" th:if="${calContent}">
-	<form method="post">
+	<form id="climb-cal-form" method="post">
 		<div class="wrap">
 			<div class="center">
 				<div id="climb-calendar"></div>
-				<input type="text" id="cal-input" name="selected-date" style="display: none"/>
+				<input type="text" id="cal-input" name="selected-date" style="display: inline:block"/>
 				
 			</div>
 		</div>
@@ -15,46 +15,52 @@
 
 <section th:fragment="contentCalMain" th:if="${calContent}">
 
-	<div th:each="climb : ${climbs}">
-		<div class="row">
-			<div class="col-xs-2">
-				<span>requested by:</span>
+	<div th:each="climb : ${climbs}" class="climblist-item">
+		<form method="post">
+		<div class="climblist-item-id" style="display: none" th:text="${climb.climb.getId()}"></div>
+		<div class="climblist-item-acceptor" style="display: none" th:text="(${climb.climb.getUserAcceptor().getUsername()}) == null ? 'unaccepted' : ${climb.climb.getUserAcceptor().getUsername()}"></div>
+		<div class="climblist-item-accepted" style="display: none" th:text="${climb.climb.isAccepted()}"></div>
+		<div class="row climblist-toprow">
+			<div class="col-xs-2 climblist-item-requested-by">
+				<span class="middle">requested by:&nbsp;&nbsp;&nbsp;&nbsp;</span>
 			</div>
-			<div class="col-xs-4">
+			<div class="col-xs-4 climblist-item-name">
 				<span th:text="${climb.userInitiate.username}"></span>
 			</div>
 			<div class="col-xs-6"></div>
 		</div>
 		<div class="row">
-			<div class="col-xs-1">
-				<div class="row">
-					<span th:text="${climb.startMonth}"></span>
-				</div>
-				<div class="row">
-					<span th:text="${climb.startDate}"></span>
-				</div>
+			<div class="col-xs-1 climblist-item-date">
+				
+					<span class="climblist-item-date-month" th:text="${climb.startMonth}"></span>
+					<br/>
+				
+					<span class="climblist-item-date-date" th:text="${climb.startDate}"></span>
+				
 			</div>
-			<div class="col-xs-2">
-				<span th:text="${climb.startDay}"></span>
+			<div class="col-xs-2 climblist-item-day">
+				<span class="middle" th:text="${climb.startDay}"></span>
 			</div>
-			<div class="col-xs-1">
-				<span th:text="${climb.startHour}"></span>
+			<div class="col-xs-1 climblist-item-hour">
+				<span class="middle" th:text="${climb.startHour}"></span>
 			</div>
-			<div class="col-xs-1">
-				<div class="row">
-					<span th:text="${climb.startMinute}"></span>
-				</div>
-				<div class="row">
-					<span th:text="${climb.startAmpm}"></span>
-				</div>
+			<div class="col-xs-1 climblist-item-timeend">
+
+					<span class="climblist-item-timeend-minute" th:text="${climb.startMinute}"></span>
+					<br/>
+					<span class="climblist-item-timeend-ampm" th:text="${climb.startAmpm}"></span>
 			</div>
-			<div class="col-xs-6">
-				<span th:text="${climb.location}"></span>
+			<div class="col-xs-6 climblist-item-location">
+				<span class="middle" th:text="${climb.location}"></span>
 			</div>
-			<div class="col-xs-1">
+			<div class="col-xs-1 climblist-item-caret">
+				<input type="text" name="isAccepted" value="true" style="display: none"/>
+				<button type="submit" style="border: 3px solid red;">
 				<span class="glyphicon glyphicon-triangle-bottom"></span>
+				</button>
 			</div>
 		</div>
+		</form>
 	</div>
 
 

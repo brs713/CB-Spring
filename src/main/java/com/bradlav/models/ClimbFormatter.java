@@ -7,7 +7,7 @@ import java.util.Date;
 public class ClimbFormatter {
 
 	private ClimbSession climb;
-	SimpleDateFormat month = new SimpleDateFormat("MM");
+	SimpleDateFormat month = new SimpleDateFormat("MMM");
 	SimpleDateFormat date = new SimpleDateFormat("d");
 	SimpleDateFormat day = new SimpleDateFormat("E");
 	SimpleDateFormat hour = new SimpleDateFormat("h");

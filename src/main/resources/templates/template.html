@@ -133,35 +133,30 @@
 
 		</ul>
  -->
-		<div class="container-fluid">
-			<div class="row">
-				<div class="cols-xs-4">
-				</div>
-				<div class="col-xs-4"></div>
-				<div class="cols-xs-4">
-					<div class="wrap-right">
+		<div id="nav-wrap" class="container-fluid">
+			<div id="nav">
+				<span id="home-link"><a href="/" class="nav-link">Home</a>
+				</span>
 
-						<ul class="center nav navbar-nav navbar-right">
-							<li style="text-align: center"><a href="loc.html">climb</a></li>
-							<li><a href="newclimb.html"><span
-									class="glyphicon glyphicon-plus"></span></a></li>
-							<li><a href="comm.html"><span
-									class="glyphicon glyphicon-envelope"></span></a></li>
-							<li class="dropdown" style="margin-right: 50px"><a href="#"
-								class="dropdown-toggle" data-toggle="dropdown" role="button"><span
-									class="glyphicon glyphicon-user"></span><span class="caret"></span></a>
-								<ul class="dropdown-menu">
-									<li><a href="profile.html">profile</a></li>
-									<li role="separator" class="divider"></li>
-									<li><a href="logout.html">logout</a></li>
-								</ul></li>
+				<ul id="nav-ul">
+					<li class="nav-li"><a href="comm" class="nav-link"><span class="glyphicon glyphicon-envelope"></span></a></li>
+					<li id="nav-person" class="nav-li dropdown"><a href="#"
+						class="dropdown-toggle nav-link" data-toggle="dropdown" role="button">
+							<span class="glyphicon glyphicon-user"></span><span class="caret"></span>
+					</a>
+						<ul id="nav-person-dropdown" class="dropdown-menu"
+							style="right: 0">
+							<li><a href="profile.html">profile</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="logout.html">logout</a></li>
 						</ul>
-					</div>
-				</div>
+					</li>
+				</ul>
 			</div>
 		</div>
-
 	</nav>
+	
+	
 	</thblock>
 </body>
 </html>

@@ -143,7 +143,7 @@ public class AuthenticationController extends AbstractController {
 
 		login(request, user);
 
-		return "redirect:loc";
+		return "redirect:/";
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)

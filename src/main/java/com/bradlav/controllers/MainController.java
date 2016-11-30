@@ -1,6 +1,7 @@
 package com.bradlav.controllers;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,12 +14,150 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bradlav.models.ClimbFormatter;
 import com.bradlav.models.ClimbSession;
+import com.bradlav.models.Communication;
 import com.bradlav.models.Profile;
 import com.bradlav.models.User;
 
 @Controller
 public class MainController extends AbstractController {
 
+
+	
+	// SEARCH-CLIMBS
+	@RequestMapping(value = "/search-climbs", method = RequestMethod.GET)
+    String searchClimbsGet(HttpServletRequest request, Model model){
+		
+		System.out.println("\n\n\t\t<<<<<   GET SEARCH-CLIMBS   >>>>>");
+
+		// get this session's user
+		HttpSession thisSession = request.getSession();
+		User user = getUserFromSession(thisSession);
+		model.addAttribute("user_logged", user.getUsername());
+		
+		//get data
+		List<User> users = userDao.findAll();
+		List<Profile> profiles = profileDao.findAll();
+		List<ClimbSession> climbList = climbDao.findAllByOrderByScheduledTimeAsc();
+		List<ClimbFormatter> climbs = new ArrayList<ClimbFormatter>();
+
+//		for (ClimbSession c : climbList) {
+//			System.out.print(c.getId() +" "+ c.getUserInitiate() + "   ");
+//		}
+//		System.out.println("\n");
+		
+		for (ClimbSession climb : climbList) {
+			climbs.add(new ClimbFormatter(climb));
+		}
+
+//		for (ClimbFormatter c : climbs) {
+//			System.out.print(c.getClimb().getId() +" "+ c.getUserInitiate() + "   ");
+//		}
+		
+		// need to create a list of locations
+		List<String> locs = new ArrayList<String>();
+		for (ClimbSession climb : climbList) {
+			if (!(locs.contains(climb.getLocation()))) {
+				locs.add(climb.getLocation());
+			}
+		}
+		
+//		for (ClimbFormatter climb : climbs) {
+//			System.out.println("\n\n\nThis climb is:" + climb);
+//		}
+		
+		
+		//pass in data
+		model.addAttribute("tab", "cal");
+		model.addAttribute("calContent", true);
+		model.addAttribute("locContent", false);
+		model.addAttribute("pplContent", false);
+
+		model.addAttribute("users", users);
+		model.addAttribute("climbs", climbs);
+		model.addAttribute("profiles", profiles);
+		model.addAttribute("locs", locs);
+
+        return "search-climbs";
+    }
+	
+	
+	
+	@RequestMapping(value = "/search-climbs", method = RequestMethod.POST)
+	String searchClimbsPost(HttpServletRequest request, Model model) {
+
+		System.out.println("\n\n\t\t*****   SEARCH-CLIMBS posted   *****");
+		
+		// get this session's user
+		HttpSession thisSession = request.getSession();
+		User user = getUserFromSession(thisSession);
+		model.addAttribute("user_logged", user.getUsername());		
+
+		boolean isAccepted = Boolean.parseBoolean(request.getParameter("isAccepted"));
+		System.out.println("accepted is: " + isAccepted);
+		
+		int climbId = Integer.parseInt(request.getParameter("climbId"));
+		
+		System.out.println("vars are:" + isAccepted + climbId);
+
+		ClimbSession climb = climbDao.findById(climbId);
+		
+		if (climb.getUserInitiate() == user) {
+			System.out.println("Can't catch yourself"); //
+			return "redirect:/search-climbs";
+		}
+		
+		climb.setAccepted(isAccepted);
+		climbDao.save(climb);
+		
+		Communication acceptance = new Communication();
+		acceptance.setClimb(climb);
+		acceptance.setFromUser(user);
+		acceptance.setToUser(climb.getUserInitiate());
+		Date now = new Date();
+		acceptance.setMessageCreated(now);
+		commDao.save(acceptance);
+		
+		
+//		{date-hidden}{3:15pm}:  {Siri}   with   {Sarge}   at   {SoIll}		
+//		{date-hidden}{3:15pm}:  {Luna}   wants to climb at   {Upper Limits}  -  {Accept btn}
+		
+
+
+/* chunk of sample from communication
+ 		String m = "";
+ 		for (Communication comm : comms) {
+ 			String person = profileDao.findByUser(comm.getFromUser()).getName();
+ 			String place = comm.getClimb().getLocation();
+ 			String ampm = (c.get(Calendar.AM_PM)) == 0 ? "am" : "pm";
+
+ 			m += "<p>" + person + " agreed to climb with you at "
+ 					+ place + " on " 
+ 					+ beginning.format(t) + " at " 
+ 					+ middle.format(t) + " " 
+ 					+ ampm + "</p>";
+ 		}
+
+*/
+
+//Assemble:
+		//Month & Day
+		
+		
+		//Time
+		
+
+		//User Initiate
+		
+		
+		//User Acceptor
+		
+		
+       return "redirect:/search-climbs";
+    }
+
+
+	
+	
 	
 	// CAL
 	@RequestMapping(value = "/cal", method = RequestMethod.GET)
@@ -32,7 +171,7 @@ public class MainController extends AbstractController {
 		//get data
 		List<User> users = userDao.findAll();
 		List<Profile> profiles = profileDao.findAll();
-		List<ClimbSession> climbList = climbDao.findAll();
+		List<ClimbSession> climbList = climbDao.findAllByOrderByScheduledTimeAsc();
 		List<ClimbFormatter> climbs = new ArrayList<ClimbFormatter>();
 		for (ClimbSession c : climbList) {
 			System.out.print(c.getId() +" "+ c.getUserInitiate() + "   ");
@@ -61,13 +200,19 @@ public class MainController extends AbstractController {
         return "cal";
     }
 	@RequestMapping(value = "/cal", method = RequestMethod.POST)
-	String calendarPost(HttpServletRequest request, Model model) {
+	String searchPost(HttpServletRequest request, Model model) {
 
+		System.out.println("\n\n\t\t*****   CAL posted   *****");
 		
 		// get this session's user
 		HttpSession thisSession = request.getSession();
 		User user = getUserFromSession(thisSession);
 		model.addAttribute("user_logged", user.getUsername());		
+
+		boolean isAccepted = Boolean.parseBoolean(request.getParameter("isAccepted"));
+		int climbId = Integer.parseInt(request.getParameter("climbId"));
+		
+		System.out.println("vars are:" + isAccepted + climbId);
 		
 //		{date-hidden}{3:15pm}:  {Siri}   with   {Sarge}   at   {SoIll}		
 //		{date-hidden}{3:15pm}:  {Luna}   wants to climb at   {Upper Limits}  -  {Accept btn}
@@ -105,7 +250,6 @@ public class MainController extends AbstractController {
 		
        return "cal";
     }
-
 	
 	
 	// LOC
@@ -119,7 +263,7 @@ public class MainController extends AbstractController {
 		
 		// get data
 		List<User> users = userDao.findAll();
-		List<ClimbSession> climbs = climbDao.findAll();
+		List<ClimbSession> climbs = climbDao.findAllByOrderByScheduledTimeAsc();
 		List<Profile> profiles = profileDao.findAll();
 
 		// need to create a list of locations
@@ -170,7 +314,7 @@ public class MainController extends AbstractController {
 		
 		// get data
 		List<User> users = userDao.findAll();
-		List<ClimbSession> climbs = climbDao.findAll();
+		List<ClimbSession> climbs = climbDao.findAllByOrderByScheduledTimeAsc();
 		List<Profile> profiles = profileDao.findAll();
 
 		// pass in data

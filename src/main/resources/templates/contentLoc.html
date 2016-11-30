@@ -3,14 +3,14 @@
 
 <section th:fragment="contentLocDetail" th:if="${locContent}">
 	<h3>Crags</h3>
-	<p th:each="loc : ${locs}" th:text="${loc}"></p>  <!-- th:if="${loc} != '-Crags-'" -->
+	<p th:each="loc : ${locs}" th:text="${loc}"></p>
+	<!-- th:if="${loc} != '-Crags-'" -->
 </section>
 
 <section th:fragment="contentLocMain" th:if="${locContent}">
 	<div class="row">
 		<div id="loc-dropdown" class="col-xs-12 hidden-sm hidden-md hidden-lg">
-	<label for="location"><h4>Crags</h4></label>
-			<select name="location">
+			<label for="location"><h4>Crags</h4></label> <select name="location">
 				<option th:each="loc : ${locs}" th:text="${loc}" />
 			</select>
 
@@ -18,20 +18,33 @@
 	</div>
 	<div class="row">
 		<div id="map-wrap">
-			<div id="map">
-			</div>
-			<div id="embedded-content-wrap">
-				<div id="embedded-content">
-					<p>"On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains."</p>
+			<div id="map"></div>
+			<div id="emb-cont-wrap-wrap">
+				<div id="embedded-content-wrap">
+					<div id="embedded-content">
+						<p>"Lorem Ipsum is simply dummy text of the printing and
+							typesetting industry. Lorem Ipsum has been the industry's
+							standard dummy text ever since the 1500s, when an unknown printer
+							took a galley of type and scrambled it to make a type specimen
+							book. It has survived not only five centuries, but also the leap
+							into electronic typesetting, remaining essentially unchanged. It
+							was popularised in the 1960s with the release of Letraset sheets
+							containing Lorem Ipsum passages, and more recently with desktop
+							publishing software like Aldus PageMaker including versions of
+							Lorem Ipsum."</p>
+					</div>
 				</div>
 			</div>
 		</div>
+
 	</div>
-	
-	
-	<script async="async" defer="defer" src="/js/map.js" th:href="@{js/map.js}"></script>
-	<script async="async" defer="defer" src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCeiaJwCSYtqaltd3ZtN_eGOG6pJ9evh3c&amp;callback=initMap'></script>
-	
+
+
+	<script async="async" defer="defer" src="/js/map.js"
+		th:href="@{js/map.js}"></script>
+	<script async="async" defer="defer"
+		src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCeiaJwCSYtqaltd3ZtN_eGOG6pJ9evh3c&amp;callback=initMap'></script>
+
 </section>
 
 

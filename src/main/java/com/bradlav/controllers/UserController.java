@@ -176,7 +176,7 @@ public class UserController extends AbstractController {
 		profileDao.save(profile);
 
 		// redirect
-		return "redirect:/loc";  	
+		return "redirect:/";  	
 
 	}
 

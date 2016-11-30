@@ -17,6 +17,7 @@ import com.bradlav.models.User;
 public interface ClimbDao extends CrudRepository<ClimbSession, Integer> {
 
 	List<ClimbSession> findAll();
+	List<ClimbSession> findAllByOrderByScheduledTimeAsc();
 	
 	ClimbSession findById(int id);
 	ClimbSession findById(ClimbSession climb);
